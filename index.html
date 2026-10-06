@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le texte qui s'affiche dans l'onglet du navigateur -->
+  <title>[TON NOM] – Game Designer</title>
+  <!-- Police manuscrite (Google Fonts) pour les étiquettes des fils -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       MENU (toujours visible en haut)
+       data-goto = l'id de la zone vers laquelle la caméra va
+       ===================================================== -->
+  <nav class="menu">
+    <button data-goto="moi">[TON NOM]</button>
+    <button data-goto="cat1">[Catégorie 1]</button>
+    <button data-goto="cat2">[Catégorie 2]</button>
+    <button data-goto="cat3">[Catégorie 3]</button>
+    <button data-goto="overview" class="menu-overview">Vue d'ensemble</button>
+  </nav>
+
+  <!-- =====================================================
+       LE TABLEAU
+       Chaque zone est placée avec --x et --y (en pixels,
+       depuis le coin haut-gauche du tableau).
+       Pour déplacer une zone, change juste ces deux valeurs.
+       ===================================================== -->
+  <div id="viewport">
+    <div id="board">
+
+      <!-- Les fils sont dessinés automatiquement ici par script.js -->
+      <svg id="strings"></svg>
+
+      <!-- ---------- L'INDICE POUR LE PREMIER VISITEUR ----------
+           Écrit à la main sur le tableau. Déplace-le avec --x / --y,
+           ou supprime tout ce bloc si tu n'en veux plus. -->
+      <p class="indice" style="--x: 1130px; --y: 1080px;">
+        Suis les fils pour découvrir mes projets
+        <svg class="fleche" viewBox="0 0 120 70" aria-hidden="true">
+          <path d="M110 60 C 80 62, 40 50, 14 14" />
+          <path d="M14 14 l 4 18 M14 14 l 17 7" />
+        </svg>
+      </p>
+
+      <!-- ---------- ZONE CENTRALE : TOI ---------- -->
+      <section class="zone" id="moi" style="--x: 1050px; --y: 680px;">
+        <div class="box">
+          <div class="photo placeholder">[TA PHOTO]</div>
+          <div class="bio">
+            <h1>[Ton Nom]</h1>
+            <p class="role">[Game Designer · Level Designer]</p>
+            <p>[Deux ou trois phrases sur toi : ce qui te passionne dans le game design, ce que tu cherches (stage, alternance, poste…).]</p>
+            <ul class="contact">
+              <li><a href="mailto:[ton@email.com]">[ton@email.com]</a></li>
+              <li><a href="[lien]" target="_blank">[LinkedIn]</a></li>
+              <li><a href="[lien]" target="_blank">[itch.io]</a></li>
+              <li><a href="[lien vers ton CV en PDF]" target="_blank">[CV (PDF)]</a></li>
+            </ul>
+          </div>
+        </div>
+        <h2 class="zone-title">[À propos de moi]</h2>
+      </section>
+
+      <!-- ---------- CATÉGORIE 1 (en haut à gauche) ---------- -->
+      <section class="zone" id="cat1" style="--x: 150px; --y: 160px;">
+        <div class="box">
+
+          <!-- UN PROJET = un bloc <article class="card"> ... </article>
+               Copie-colle un bloc entier pour ajouter un projet. -->
+          <article class="card" tabindex="0">
+            <!-- Pour mettre une vraie image, remplace la ligne ci-dessous par :
+                 <img class="thumb" src="images/mon-projet.jpg" alt="Mon projet"> -->
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet A]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+
+            <template class="details">
+              <!-- =====================================================
+                   LA PAGE PROJET (s'ouvre dans le tiroir au clic)
+                   - Chaque <section class="bloc"> = une partie texte + image.
+                     Les images alternent automatiquement à droite / à gauche.
+                   - Section sans <figure> = texte seul sur toute la largeur.
+                   - class="bloc large" = l'image passe sous le texte, en grand
+                     (idéal pour un plan de niveau ou un schéma).
+                   - Copie-colle ou supprime des sections librement.
+                   ===================================================== -->
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet A]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet B]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet B]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet C]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet C]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+        </div>
+        <h2 class="zone-title">[Catégorie 1 — ex. Jeux complets]</h2>
+      </section>
+
+      <!-- ---------- CATÉGORIE 2 (à droite) ---------- -->
+      <section class="zone" id="cat2" style="--x: 1900px; --y: 260px;">
+        <div class="box">
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet D]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet D]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet E]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet E]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+        </div>
+        <h2 class="zone-title">[Catégorie 2 — ex. Level design]</h2>
+      </section>
+
+      <!-- ---------- CATÉGORIE 3 (en bas à gauche) ---------- -->
+      <section class="zone" id="cat3" style="--x: 250px; --y: 1180px;">
+        <div class="box">
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet F]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet F]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+          <article class="card" tabindex="0">
+            <div class="thumb placeholder">[IMAGE]</div>
+            <!-- La note scotchée sous la photo -->
+            <div class="note">
+              <h3>[Projet G]</h3>
+              <p class="short">[Genre · Année]</p>
+              <p class="desc">[Une phrase qui résume le projet, ~100 caractères max.]</p>
+            </div>
+            <template class="details">
+              <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
+              <h3>[Projet G]</h3>
+              <ul class="facts">
+                <li><strong>Rôle</strong> [ton rôle]</li>
+                <li><strong>Moteur / outils</strong> [Unity, Figma…]</li>
+                <li><strong>Durée</strong> [x semaines]</li>
+                <li><strong>Équipe</strong> [solo / x pers.]</li>
+              </ul>
+              <a class="btn" href="[lien]" target="_blank">[Jouer sur itch.io]</a>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Le concept</h4>
+                  <p>[Le pitch du jeu : genre, intention, ce que le joueur fait et ressent.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Mon rôle</h4>
+                  <p>[Ce dont TU étais responsable, précisément : systèmes, niveaux, équilibrage, documentation…]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc large">
+                <div class="texte">
+                  <h4>Process et itérations</h4>
+                  <p>[Prototypes, playtests, ce qui ne marchait pas et ce que tu as changé.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[GRAND SCHÉMA / PLAN DE NIVEAU]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Résultat</h4>
+                  <p>[Où en est le projet, retours des joueurs, chiffres éventuels.]</p>
+                </div>
+                <figure>
+                  <div class="placeholder">[IMAGE]</div>
+                  <figcaption>[Légende de l'image]</figcaption>
+                </figure>
+              </section>
+
+              <section class="bloc">
+                <div class="texte">
+                  <h4>Ce que j'ai appris</h4>
+                  <p>[Ce que tu referais pareil, ce que tu ferais autrement.]</p>
+                </div>
+              </section>
+            </template>
+          </article>
+
+        </div>
+        <h2 class="zone-title">[Catégorie 3 — ex. Game jams]</h2>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- =====================================================
+       LE TIROIR (rempli automatiquement avec le contenu
+       de la <div class="details"> du projet cliqué)
+       ===================================================== -->
+  <div id="tiroir-fond"></div>
+  <aside id="tiroir" aria-label="Détail du projet">
+    <div class="tiroir-barre">
+      <button class="tiroir-fermer" aria-label="Fermer">✕</button>
+    </div>
+    <div id="tiroir-contenu"></div>
+  </aside>
+
+  <!-- Image agrandie en plein écran -->
+  <div id="visionneuse" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

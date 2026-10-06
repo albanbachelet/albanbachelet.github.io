@@ -1,0 +1,511 @@
+/* =========================================================
+   HABILLAGE
+   Toutes les couleurs et polices sont ici.
+   Pour changer l'ambiance du site, modifie juste ces valeurs.
+   ========================================================= */
+:root {
+  --fond-exterieur: #2b2b2e;   /* autour du tableau */
+  --fond-tableau:   #e8e5df;   /* le tableau lui-même */
+  --points-tableau: #d6d2ca;   /* petite grille de points */
+  --fond-carte:     #ffffff;
+  --texte:          #222222;
+  --texte-doux:     #6b6b6b;
+  --contour-zone:   #ffffff;
+  --fil:            #c0392b;   /* couleur des fils */
+  --accent:         #c0392b;   /* boutons, liens, punaises */
+  --placeholder:    #c9c5bd;
+  --fond-note:      #fdf6c9;   /* la note scotchée sous chaque projet */
+  --scotch:         rgba(255, 255, 255, 0.6);
+
+  --police: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --police-ecrite: "Caveat", cursive;   /* l'écriture "à la main" sur les fils */
+  --encre:         #2a3a6b;             /* couleur de l'écriture */
+
+  --projets-par-ligne: 3;      /* nombre max de projets côte à côte dans une catégorie */
+
+  --largeur-tableau: 2500px;
+  --hauteur-tableau: 1600px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--police);
+  color: var(--texte);
+  background: var(--fond-exterieur);
+}
+
+/* ---------- Menu ---------- */
+.menu {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.menu button {
+  border: none;
+  background: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--texte);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.menu button:hover  { background: rgba(0, 0, 0, 0.06); }
+.menu button.actif  { background: var(--accent); color: #fff; }
+
+/* ---------- La "caméra" et le tableau ---------- */
+#viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+#board {
+  position: relative;
+  width: var(--largeur-tableau);
+  height: var(--hauteur-tableau);
+  background-color: var(--fond-tableau);
+  background-image: radial-gradient(var(--points-tableau) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  border-radius: 12px;
+  transform-origin: 0 0;
+}
+/* L'animation de la caméra (ajoutée par le script après le chargement) */
+#board.anim {
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+#strings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+#strings .fil     { fill: none; stroke: var(--fil); stroke-width: 3; stroke-linecap: round; }
+/* Zone cliquable invisible (plus large que le fil) pour cliquer facilement */
+#strings .fil-clic { fill: none; stroke: transparent; stroke-width: 24; pointer-events: stroke; cursor: pointer; }
+#strings .fil-clic:hover + .fil { stroke-width: 5; }
+/* Le texte écrit le long des fils */
+#strings .etiquette {
+  font-family: var(--police-ecrite);
+  font-size: 34px;
+  font-weight: 600;
+  fill: var(--encre);
+  pointer-events: auto;   /* on peut aussi cliquer sur le texte */
+  cursor: pointer;
+}
+#strings .punaise { fill: var(--accent); stroke: rgba(0,0,0,0.25); stroke-width: 2; }
+
+/* Au chargement, les fils se "dessinent" (attire l'œil sur eux) */
+#strings.dessin .fil {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: dessiner-fil 1.4s 0.3s ease-out forwards;
+}
+@keyframes dessiner-fil { to { stroke-dashoffset: 0; } }
+
+/* ---------- L'indice écrit sur le tableau ---------- */
+.indice {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  margin: 0;
+  font-family: var(--police-ecrite);
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--encre);
+  transform: rotate(-3deg);
+  pointer-events: none;
+  opacity: 0;
+  animation: apparaitre 0.8s 1.6s forwards;   /* arrive après les fils */
+}
+.indice .fleche {
+  position: absolute;
+  left: -125px;
+  top: -45px;
+  width: 120px;
+  height: 70px;
+  fill: none;
+  stroke: var(--encre);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+@keyframes apparaitre { to { opacity: 1; } }
+
+/* ---------- Zones ---------- */
+.zone {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+}
+.zone .box {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 32px;
+}
+/* Les projets passent à la ligne au-delà de --projets-par-ligne */
+.zone:not(#moi) .box {
+  width: max-content;
+  flex-wrap: wrap;
+  row-gap: 48px;
+  max-width: calc(var(--projets-par-ligne) * 230px + (var(--projets-par-ligne) - 1) * 24px + 64px);
+}
+.zone-title {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+/* Une zone qui n'est pas au centre de la caméra est cliquable */
+.zone:not(.active) { cursor: pointer; }
+.zone:not(.active):hover .zone-title { color: var(--accent); }
+
+/* ---------- Cartes projet : photo + note scotchée ---------- */
+.card {
+  position: relative;
+  width: 230px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+/* La punaise en haut de la photo */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+/* Petite inclinaison pour l'effet "punaisé" */
+.card:nth-child(odd)  { transform: rotate(-1.5deg); }
+.card:nth-child(even) { transform: rotate(1.2deg); }
+.card:hover, .card:focus-visible { transform: rotate(0) scale(1.04); outline: none; }
+
+/* La photo : le cadre blanc du polaroid est une bordure */
+.card .thumb {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border: 10px solid var(--fond-carte);
+  border-bottom-width: 30px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+.card .thumb.placeholder { display: flex; }
+
+/* La note posée par-dessus le bas de la photo */
+.card .note {
+  position: relative;
+  z-index: 2;
+  width: 88%;
+  margin: -22px 0 0 8%;
+  padding: 16px 14px 14px;
+  background: var(--fond-note);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transform: rotate(2deg);
+}
+.card:nth-child(even) .note { transform: rotate(-1.5deg); }
+/* Le morceau de scotch */
+.card .note::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 60px;
+  height: 18px;
+  margin-left: -30px;
+  background: var(--scotch);
+  transform: rotate(-3deg);
+}
+.card h3      { margin: 0 0 2px; font-size: 17px; }
+.card .short  { margin: 0; font-size: 12px; color: var(--texte-doux); }
+.card .desc   { margin: 6px 0 0; font-size: 13px; line-height: 1.4; }
+
+/* ---------- Zone "moi" ---------- */
+#moi .box    { background: var(--fond-carte); align-items: center; }
+#moi .photo  { width: 180px; height: 220px; flex-shrink: 0; }
+#moi .bio    { width: 340px; }
+#moi h1      { margin: 0; font-size: 30px; }
+#moi .role   { margin: 4px 0 12px; color: var(--accent); font-weight: 600; }
+#moi p       { line-height: 1.5; }
+.contact     { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.contact a   { color: var(--accent); }
+
+/* ---------- Placeholders (rectangles gris à remplacer) ---------- */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--placeholder);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Le tiroir (page projet) ---------- */
+:root {
+  --largeur-tiroir: 75%;   /* la place prise par le tiroir sur grand écran */
+}
+
+/* Le voile sombre sur la bande de tableau restée visible */
+#tiroir-fond {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+#tiroir-fond.ouvert { opacity: 1; pointer-events: auto; cursor: pointer; }
+
+#tiroir {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 21;
+  width: var(--largeur-tiroir);
+  overflow-y: auto;            /* le tiroir défile */
+  background: var(--fond-carte);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.3);
+  transform: translateX(105%);
+  visibility: hidden;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s 0.5s;
+}
+#tiroir.ouvert {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Le bouton fermer reste en haut à droite pendant qu'on défile */
+.tiroir-barre { position: sticky; top: 0; height: 0; z-index: 5; }
+.tiroir-fermer {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: var(--fond-carte);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  color: var(--texte);
+  cursor: pointer;
+}
+
+#tiroir-contenu {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 56px 56px 96px;
+}
+
+/* En-tête de la page projet */
+#tiroir-contenu > .media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 480px;
+  object-fit: cover;
+  display: flex;
+  border: 0;
+}
+#tiroir-contenu > img.media,
+#tiroir-contenu > video.media { display: block; }
+#tiroir-contenu .tag {
+  margin: 32px 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+#tiroir-contenu > h3 { margin: 0 0 20px; font-size: 36px; }
+
+/* La barre d'infos (rôle, moteur, durée, équipe) */
+#tiroir-contenu .facts {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+#tiroir-contenu .facts li { padding: 12px 16px; border-left: 1px solid #ddd; font-size: 15px; }
+#tiroir-contenu .facts li:first-child { border-left: 0; padding-left: 0; }
+#tiroir-contenu .facts strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+}
+
+/* Le bouton "Jouer" */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Les sections : texte et image côte à côte */
+.bloc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 64px;
+}
+.bloc:nth-of-type(even) > .texte { order: 2; }     /* une fois sur deux, l'image passe à gauche */
+.bloc > :only-child { grid-column: 1 / -1; }       /* section sans image = texte pleine largeur */
+.bloc.large { grid-template-columns: 1fr; gap: 20px; }
+.bloc.large > .texte { order: 0; }
+.bloc h4 { margin: 0 0 10px; font-size: 22px; }
+.bloc p  { margin: 0 0 12px; line-height: 1.65; }
+
+.bloc figure { margin: 0; }
+.bloc figure > :first-child {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+.bloc.large figure > :first-child { aspect-ratio: 16 / 9; }
+.bloc figure > img:first-child { display: block; }
+.bloc figcaption { margin-top: 8px; font-size: 13px; font-style: italic; color: var(--texte-doux); }
+
+/* "Projet suivant" en bas du tiroir */
+.navigation-projets {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid #ddd;
+}
+.navigation-projets button {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: var(--texte);
+  cursor: pointer;
+}
+.navigation-projets .suivant { margin-left: auto; text-align: right; }
+.navigation-projets small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+}
+.navigation-projets strong { font-size: 20px; }
+.navigation-projets button:hover strong { color: var(--accent); }
+
+/* ---------- Image agrandie ---------- */
+#visionneuse {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+}
+#visionneuse[hidden] { display: none; }
+#visionneuse .agrandie {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+#visionneuse .placeholder.agrandie { width: 80vw; height: 75vh; font-size: 18px; }
+
+/* Écrans moyens : le tiroir prend toute la largeur */
+@media (max-width: 1100px) {
+  :root { --largeur-tiroir: 100%; }
+}
+
+/* =========================================================
+   VERSION MOBILE (écran de moins de 800 px)
+   Le tableau devient un parcours vertical.
+   ========================================================= */
+@media (max-width: 800px) {
+  .menu {
+    left: 0; right: 0; top: 0;
+    transform: none;
+    border-radius: 0;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .menu-overview { display: none; }
+
+  #viewport { position: static; overflow: visible; }
+  #board {
+    width: auto;
+    height: auto;
+    transform: none !important;
+    border-radius: 0;
+    padding: 80px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  #strings { display: none; }
+  .indice { display: none; }
+
+  .zone { position: static; width: 100%; max-width: 480px; scroll-margin-top: 70px; }
+  #moi  { order: -1; }          /* "moi" toujours en premier */
+  /* Le fil vertical qui relie les zones entre elles */
+  .zone + .zone::before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 50px;
+    margin: 10px auto;
+    background: var(--fil);
+  }
+  .zone:not(#moi) .box { width: auto; max-width: none; }
+  .zone .box  { flex-direction: column; align-items: center; padding: 24px 16px; }
+  .card       { width: 100%; max-width: 300px; }
+  .card .thumb { height: 220px; }
+  #moi .bio   { width: 100%; }
+  #tiroir-contenu { padding: 64px 16px 64px; }
+  #tiroir-contenu > h3 { font-size: 28px; }
+  #tiroir-contenu .facts { grid-template-columns: 1fr 1fr; }
+  #tiroir-contenu .facts li { border-left: 0; padding-left: 0; }
+  .bloc { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
+  .bloc:nth-of-type(even) > .texte { order: 0; }
+}
