@@ -6,9 +6,9 @@
 // Les cartes de la zone d'arrivée sont aussi reliées à sa punaise.
 // Si tu ajoutes une zone (ex. id="cat4"), ajoute une ligne ici.
 const LIENS = [
-  ["moi", "cat1", "Catégorie 1"],
-  ["moi", "cat2", "Catégorie 2"],
-  ["moi", "cat3", "Catégorie 3"],
+  ["moi", "cat1", "Projets Jeux Vidéo"],
+  ["moi", "cat2", "Autres Projets"],
+  ["moi", "cat3", "Prototypes"],
 ];
 
 // La zone sur laquelle le site s'ouvre

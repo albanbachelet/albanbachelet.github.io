@@ -158,6 +158,35 @@ html, body {
   align-items: flex-start;
   padding: 32px;
 }
+/* La zone garde la largeur de ses projets (un long texte passe à la ligne au lieu de l'élargir) */
+.zone:not(#moi) { width: min-content; }
+@media (max-width: 800px) { .zone:not(#moi) { width: 100%; } }
+
+/* Titre et description : centrés, avec un fond qui masque le fil derrière le texte */
+.zone-title,
+.zone-desc {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: var(--fond-tableau);
+}
+
+/* La description sous le titre d'une catégorie */
+.zone-desc {
+  margin-top: 4px;
+  max-width: 90%;
+  text-align: center;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--texte-doux);
+}
+
+/* Le titre d'une catégorie remonte vers ses projets */
+.zone:not(#moi) .zone-title { margin-top: -20px; }
+
 /* Les projets passent à la ligne au-delà de --projets-par-ligne */
 .zone:not(#moi) .box {
   width: max-content;
@@ -166,7 +195,7 @@ html, body {
   max-width: calc(var(--projets-par-ligne) * 230px + (var(--projets-par-ligne) - 1) * 24px + 64px);
 }
 .zone-title {
-  margin: 14px 0 0;
+  margin: 14px auto 0;
   text-align: center;
   font-size: 22px;
   font-weight: 600;
@@ -243,7 +272,7 @@ html, body {
 
 /* ---------- Zone "moi" ---------- */
 #moi .box    { background: var(--fond-carte); align-items: center; }
-#moi .photo  { width: 180px; height: 220px; flex-shrink: 0; }
+#moi .photo  { width: 180px; height: 220px; flex-shrink: 0; object-fit: cover; }
 #moi .bio    { width: 340px; }
 #moi h1      { margin: 0; font-size: 30px; }
 #moi .role   { margin: 4px 0 12px; color: var(--accent); font-weight: 600; }
