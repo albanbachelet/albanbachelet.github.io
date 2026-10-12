@@ -6,9 +6,9 @@
 // Les cartes de la zone d'arrivée sont aussi reliées à sa punaise.
 // Si tu ajoutes une zone (ex. id="cat4"), ajoute une ligne ici.
 const LIENS = [
-  ["moi", "cat1", "Projets Jeux Vidéo"],
-  ["moi", "cat2", "Autres Projets"],
-  ["moi", "cat3", "Prototypes"],
+  ["moi", "cat1", "Projets Jeux Vidéo", 0.5],
+  ["moi", "cat2", "Autres Projets", 0.5],
+  ["moi", "cat3", "Prototypes", 0.4],
 ];
 
 // La zone sur laquelle le site s'ouvre
@@ -83,8 +83,8 @@ function fil(a, b, idA, idB) {
 // POSITION_ETIQUETTE : 0 = collé à la zone de départ, 0.5 = milieu du fil, 1 = à l'arrivée
 const POSITION_ETIQUETTE = 0.3;
 
-function etiquette(a, b, texte, idA, idB) {
-  const t = POSITION_ETIQUETTE;
+function etiquette(a, b, texte, idA, idB, position = POSITION_ETIQUETTE) {
+  const t = position;
   const distance = Math.hypot(b.x - a.x, b.y - a.y);
   // Le point "de contrôle" qui donne sa courbe au fil (le même que dans fil())
   const c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 + distance * 0.12 };
@@ -110,7 +110,7 @@ function dessinerFils() {
   let fils = "";
   const punaises = [];
 
-  LIENS.forEach(([idA, idB, texte]) => {
+  LIENS.forEach(([idA, idB, texte, position]) => {
     const zoneA = document.getElementById(idA);
     const zoneB = document.getElementById(idB);
     if (!zoneA || !zoneB) return;
@@ -121,7 +121,7 @@ function dessinerFils() {
     const pB = pointSurBord(boxB, centre(boxA));
 
     fils += fil(pA, pB, idA, idB);
-    if (texte) fils += etiquette(pA, pB, texte, idA, idB);
+    if (texte) fils += etiquette(pA, pB, texte, idA, idB, position);
     punaises.push(pA, pB);
 
     // Chaque carte de la zone B est reliée à la punaise de B
