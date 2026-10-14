@@ -23,7 +23,7 @@
 
   --projets-par-ligne: 3;      /* nombre max de projets côte à côte dans une catégorie */
 
-  --largeur-tableau: 2900px;
+  --largeur-tableau: 3000px;
   --hauteur-tableau: 1600px;
 }
 
@@ -273,10 +273,18 @@ html, body {
 /* ---------- Zone "moi" ---------- */
 #moi .box    { background: var(--fond-carte); align-items: center; }
 #moi .photo  { width: 180px; height: 220px; flex-shrink: 0; object-fit: cover; }
-#moi .bio    { width: 340px; }
+#moi .bio    { width: 520px; }
 #moi h1      { margin: 0; font-size: 30px; }
 #moi .role   { margin: 4px 0 12px; color: var(--accent); font-weight: 600; }
-#moi p       { line-height: 1.5; }
+#moi p       { line-height: 1.5; font-size: 15px; }
+#moi .dispo  {
+  display: inline-block;
+  margin: 4px 0 0;
+  padding: 6px 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--fond-tableau);
+  font-weight: 600;
+}
 .contact     { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .contact a   { color: var(--accent); }
 
@@ -537,4 +545,21 @@ html, body {
   #tiroir-contenu .facts li { border-left: 0; padding-left: 0; }
   .bloc { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
   .bloc:nth-of-type(even) > .texte { order: 0; }
+}
+
+/* ---------- Vignette sans visuel (prototypes) ----------
+   Un polaroid "pas encore développé" pour les projets
+   qui n'ont pas encore d'image. */
+.card .thumb.sans-visuel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at 40% 35%, #5a5248 0%, #3a352f 55%, #2a2622 100%);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--police-ecrite);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.1;
 }
