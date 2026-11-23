@@ -2,14 +2,21 @@
    RÉGLAGES
    ========================================================= */
 
-// Les fils entre les zones : [zone de départ, zone d'arrivée, texte écrit sur le fil].
+// Les fils entre les zones : [zone de départ, zone d'arrivée, texte écrit sur le fil, position].
+// Le texte existe en deux langues : { fr: "...", en: "..." }.
 // Les cartes de la zone d'arrivée sont aussi reliées à sa punaise.
 // Si tu ajoutes une zone (ex. id="cat4"), ajoute une ligne ici.
 const LIENS = [
-  ["moi", "cat1", "Projets Jeux Vidéo", 0.5],
-  ["moi", "cat2", "Autres Projets", 0.5],
-  ["moi", "cat3", "Prototypes", 0.4],
+  ["moi", "cat1", { fr: "Projets Jeux Vidéo", en: "Video Game Projects" }, 0.5],
+  ["moi", "cat2", { fr: "Autres Projets",     en: "Other Projects" },      0.5],
+  ["moi", "cat3", { fr: "Prototypes",         en: "Prototypes" },          0.4],
 ];
+
+// Les textes écrits par le script (navigation en bas des pages projet)
+const TEXTES = {
+  fr: { precedent: "← Projet précédent", suivant: "Projet suivant →" },
+  en: { precedent: "← Previous project", suivant: "Next project →" },
+};
 
 // La zone sur laquelle le site s'ouvre
 const ZONE_DEPART = "moi";
@@ -38,6 +45,52 @@ let carteOuverte = null;        // le projet affiché dans le tiroir
 let camera = { x: 0, y: 0, s: 1 }; // position et zoom actuels de la caméra
 
 
+/* ---------- La langue ---------- */
+
+// Ordre de choix : ?lang=en dans l'adresse, sinon le dernier choix du visiteur,
+// sinon la langue de son navigateur (français → FR, toute autre langue → EN)
+function langueDeDepart() {
+  const demandee = new URLSearchParams(location.search).get("lang");
+  if (demandee === "fr" || demandee === "en") return demandee;
+  try {
+    const memorisee = localStorage.getItem("langue");
+    if (memorisee === "fr" || memorisee === "en") return memorisee;
+  } catch (e) { /* stockage indisponible : on ignore */ }
+  return (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
+}
+
+const langue = () => document.documentElement.lang;
+
+// Le texte d'un élément dans la langue affichée
+function texteVisible(el) {
+  const version = el.querySelector(`[data-lang="${langue()}"]`);
+  return (version || el).textContent.trim();
+}
+
+function appliquerLangue(l) {
+  document.documentElement.lang = l;
+  document.querySelectorAll(".langue button").forEach(b =>
+    b.classList.toggle("actif", b.dataset.langue === l)
+  );
+}
+
+function changerLangue(l) {
+  if (l === langue()) return;
+  appliquerLangue(l);
+  try { localStorage.setItem("langue", l); } catch (e) { /* on ignore */ }
+  // L'adresse garde la langue, pour pouvoir copier le lien tel quel
+  const url = new URL(location.href);
+  url.searchParams.set("lang", l);
+  history.replaceState(null, "", url);
+  // Les zones changent de taille : on redessine les fils et on recadre
+  dessinerFils();
+  allerA(zoneActuelle);
+  if (carteOuverte) ouvrirProjet(carteOuverte);
+}
+
+appliquerLangue(langueDeDepart());
+
+
 /* ---------- Petits outils de géométrie ---------- */
 
 // Position et taille d'un élément, en pixels, à l'intérieur du tableau
@@ -49,6 +102,16 @@ function rectDansTableau(el) {
     e = e.offsetParent;
   }
   return { x, y, w: el.offsetWidth, h: el.offsetHeight };
+}
+
+// Le plus petit rectangle qui contient les deux rectangles a et b
+function englober(a, b) {
+  const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y);
+  return {
+    x, y,
+    w: Math.max(a.x + a.w, b.x + b.w) - x,
+    h: Math.max(a.y + a.h, b.y + b.h) - y,
+  };
 }
 
 function centre(r) {
@@ -121,7 +184,7 @@ function dessinerFils() {
     const pB = pointSurBord(boxB, centre(boxA));
 
     fils += fil(pA, pB, idA, idB);
-    if (texte) fils += etiquette(pA, pB, texte, idA, idB, position);
+    if (texte) fils += etiquette(pA, pB, texte[langue()] || texte.fr, idA, idB, position);
     punaises.push(pA, pB);
 
     // Chaque carte de la zone B est reliée à la punaise de B
@@ -183,7 +246,11 @@ function allerA(id) {
   if (id === "overview") {
     cadrer({ x: 0, y: 0, w: board.offsetWidth, h: board.offsetHeight }, 0.95, 1);
   } else {
-    cadrer(rectDansTableau(document.getElementById(id)), 0.85, ZOOM_MAX);
+    let r = rectDansTableau(document.getElementById(id));
+    // Sur la zone de départ, la caméra cadre aussi l'indice "Suis les fils…"
+    const indice = document.querySelector(".indice");
+    if (id === ZONE_DEPART && indice) r = englober(r, rectDansTableau(indice));
+    cadrer(r, 0.85, ZOOM_MAX);
   }
 }
 
@@ -199,7 +266,7 @@ function ouvrirProjet(carte) {
   const titreZone = carte.closest(".zone").querySelector(".zone-title");
   const titre = contenu.querySelector("h3");
   if (titreZone && titre) {
-    titre.insertAdjacentHTML("beforebegin", `<p class="tag">${titreZone.textContent}</p>`);
+    titre.insertAdjacentHTML("beforebegin", `<p class="tag">${texteVisible(titreZone)}</p>`);
   }
 
   // En bas : projet précédent / suivant
@@ -224,11 +291,11 @@ function navigationProjets(carte) {
   const bouton = (c, sens, label) => c ? `
     <button class="${sens}" data-index="${liste.indexOf(c)}">
       <small>${label}</small>
-      <strong>${c.querySelector("h3").textContent}</strong>
+      <strong>${texteVisible(c.querySelector("h3"))}</strong>
     </button>` : "";
   return `<nav class="navigation-projets">
-    ${bouton(prec, "precedent", "← Projet précédent")}
-    ${bouton(suiv, "suivant", "Projet suivant →")}
+    ${bouton(prec, "precedent", TEXTES[langue()].precedent)}
+    ${bouton(suiv, "suivant", TEXTES[langue()].suivant)}
   </nav>`;
 }
 
@@ -270,6 +337,11 @@ function fermerImage() {
 // Boutons du menu
 document.querySelectorAll(".menu button").forEach(bouton =>
   bouton.addEventListener("click", () => allerA(bouton.dataset.goto))
+);
+
+// Boutons FR / EN
+document.querySelectorAll(".langue button").forEach(bouton =>
+  bouton.addEventListener("click", () => changerLangue(bouton.dataset.langue))
 );
 
 // Clic sur un fil → on va à l'autre bout du fil

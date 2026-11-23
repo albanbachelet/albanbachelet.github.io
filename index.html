@@ -18,12 +18,24 @@
        data-goto = l'id de la zone vers laquelle la caméra va
        ===================================================== -->
   <nav class="menu">
-    <button data-goto="moi">À propos de moi</button>
-    <button data-goto="cat1">Projets Jeux Vidéo</button>
-    <button data-goto="cat2">Autres Projets</button>
+    <button data-goto="moi"><span data-lang="fr">À propos de moi</span><span data-lang="en">About me</span></button>
+    <button data-goto="cat1"><span data-lang="fr">Projets Jeux Vidéo</span><span data-lang="en">Video Game Projects</span></button>
+    <button data-goto="cat2"><span data-lang="fr">Autres Projets</span><span data-lang="en">Other Projects</span></button>
     <button data-goto="cat3">Prototypes</button>
-    <button data-goto="overview" class="menu-overview">Vue d'ensemble</button>
+    <button data-goto="overview" class="menu-overview"><span data-lang="fr">Vue d'ensemble</span><span data-lang="en">Overview</span></button>
   </nav>
+
+  <!-- =====================================================
+       CHOIX DE LA LANGUE (en haut à droite)
+       Tous les textes existent en deux versions :
+       data-lang="fr" pour le français, data-lang="en" pour l'anglais.
+       Seule la langue choisie s'affiche.
+       Lien direct vers la version anglaise : ?lang=en à la fin de l'adresse
+       ===================================================== -->
+  <div class="langue" role="group" aria-label="Langue / Language">
+    <button data-langue="fr">FR</button>
+    <button data-langue="en">EN</button>
+  </div>
 
   <!-- =====================================================
        LE TABLEAU
@@ -41,7 +53,7 @@
            Écrit à la main sur le tableau. Déplace-le avec --x / --y,
            ou supprime tout ce bloc si tu n'en veux plus. -->
       <p class="indice" style="--x: 1080px; --y: 1110px;">
-        Suis les fils pour découvrir mes projets
+        <span data-lang="fr">Suis les fils pour découvrir mes projets</span><span data-lang="en">Follow the strings to discover my projects</span>
         <svg class="fleche" viewBox="0 0 120 70" aria-hidden="true">
           <path d="M110 60 C 80 62, 40 50, 14 14" />
           <path d="M14 14 l 4 18 M14 14 l 17 7" />
@@ -55,16 +67,19 @@
           <div class="bio">
             <h1>Alban Bachelet</h1>
             <p class="role">Game Designer · Level Designer</p>
-            <p>Étudiant en <strong>3<sup>e</sup> année de game design</strong> à <strong>ISART Digital</strong>, le jeu fait entièrement partie de ma vie. Ce qui m'attire le plus, c'est <strong>l'exploration</strong>, <strong>l'apprentissage</strong> et <strong>l'immersion</strong> dans des univers très différents. J'aime découvrir de nouveaux jeux, mais certains continuent de m'inspirer, comme The Finals, Chants of Sennaar ou Death's Door. En dehors du jeu vidéo, je pratique l'escalade depuis plusieurs années.</p>
-            <p class="dispo">Recherche un stage de février à fin avril 2027</p>
+            <p data-lang="fr">Étudiant en <strong>3<sup>e</sup> année de game design</strong> à <strong>ISART Digital</strong>, le jeu fait entièrement partie de ma vie. Ce qui m'attire le plus, c'est <strong>l'exploration</strong>, <strong>l'apprentissage</strong> et <strong>l'immersion</strong> dans des univers très différents. J'aime découvrir de nouveaux jeux, mais certains continuent de m'inspirer, comme The Finals, Chants of Sennaar ou Death's Door. En dehors du jeu vidéo, je pratique l'escalade depuis plusieurs années.</p>
+            <p data-lang="en">I’m a <strong>third-year game design student</strong> at <strong>ISART Digital</strong>, and games are a big part of my life. What draws me most is <strong>exploration</strong>, <strong>learning</strong> and <strong>immersion</strong> in very different worlds. I love discovering new games, but some keep inspiring me, like The Finals, Chants of Sennaar or Death’s Door. Outside of video games, I have been climbing for several years.</p>
+            <p class="dispo" data-lang="fr">Recherche un stage de février à fin avril 2027</p>
+            <p class="dispo" data-lang="en">Looking for an internship from February to late April 2027</p>
             <ul class="contact">
               <li><a href="mailto:albanbachelet.pro@gmail.com">albanbachelet.pro@gmail.com</a></li>
               <li><a href="https://www.linkedin.com/in/alban-bachelet/" target="_blank">LinkedIn</a></li>
-              <li><a href="cv/CV_Alban_Bachelet.pdf" target="_blank">CV (PDF)</a></li>
+              <li data-lang="fr"><a href="cv/CV_Alban_Bachelet.pdf" target="_blank">CV (PDF)</a></li>
+              <li data-lang="en"><a href="cv/CV_Alban_Bachelet_EN.pdf" target="_blank">Resume (PDF)</a></li>
             </ul>
           </div>
         </div>
-        <h2 class="zone-title">À propos de moi</h2>
+        <h2 class="zone-title"><span data-lang="fr">À propos de moi</span><span data-lang="en">About me</span></h2>
       </section>
 
       <!-- ---------- CATÉGORIE 1 (en haut à gauche) ---------- -->
@@ -80,8 +95,10 @@
             <!-- La note scotchée sous la photo -->
             <div class="note">
               <h3>I saw It</h3>
-              <p class="short">Jeu de recherche · Projet scolaire · Unity · 2026</p>
-              <p class="desc">Fouillez dans votre appartement pour retrouver les preuves que Bigfoot existe et les exposer au monde</p>
+              <p class="short" data-lang="fr">Jeu de recherche · Projet scolaire · Unity · 2026</p>
+              <p class="short" data-lang="en">Search game · School project · Unity · 2026</p>
+              <p class="desc" data-lang="fr">Fouillez dans votre appartement pour retrouver les preuves que Bigfoot existe et les exposer au monde</p>
+              <p class="desc" data-lang="en">Search your apartment for proof that Bigfoot exists and reveal it to the world</p>
             </div>
 
             <template class="details">
@@ -97,60 +114,76 @@
               <img class="media" src="images/i-saw-it/entete.jpg" alt="L'appartement de I Saw It">
               <h3>I saw It</h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer · Porteur du projet</li>
-                <li><strong>Moteur / outils</strong> Unity</li>
-                <li><strong>Durée</strong> 4 jours</li>
-                <li><strong>Équipe</strong> 9 personnes</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer · Porteur du projet</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer · Project lead</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Unity</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Unity</li>
+                <li data-lang="fr"><strong>Durée</strong> 4 jours</li>
+                <li data-lang="en"><strong>Duration</strong> 4 days</li>
+                <li data-lang="fr"><strong>Équipe</strong> 9 personnes</li>
+                <li data-lang="en"><strong>Team</strong> 9 people</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Le joueur incarne un chercheur en créatures légendaires qui a enfin réuni les preuves de l’existence du Bigfoot. Mais quelques minutes avant de les présenter au monde lors d’une conférence, il perd son dossier. Il ne lui reste que quelques minutes pour fouiller son appartement et <strong>reconstituer un dossier assez crédible</strong> pour convaincre le monde entier.</p>
-                  <p>Dans un appartement en désordre, chaque objet (tiroir, bureau, canapé…) cache <strong>un mini-jeu propre à l’objet fouillé</strong>. Les preuves trouvées rapportent des points, mais attention : certaines ne sont pas crédibles et en font perdre. À la fin du chrono, le total des points détermine laquelle des <strong>quatre fins</strong> s’affiche.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Le joueur incarne un chercheur en créatures légendaires qui a enfin réuni les preuves de l’existence du Bigfoot. Mais quelques minutes avant de les présenter au monde lors d’une conférence, il perd son dossier. Il ne lui reste que quelques minutes pour fouiller son appartement et <strong>reconstituer un dossier assez crédible</strong> pour convaincre le monde entier.</p>
+                  <p data-lang="en">The player is a cryptozoologist who has finally gathered proof that Bigfoot exists. But minutes before presenting it to the world at a conference, he loses his file. He only has a few minutes to search his apartment and <strong>rebuild a file credible enough</strong> to convince the whole world.</p>
+                  <p data-lang="fr">Dans un appartement en désordre, chaque objet (tiroir, bureau, canapé…) cache <strong>un mini-jeu propre à l’objet fouillé</strong>. Les preuves trouvées rapportent des points, mais attention : certaines ne sont pas crédibles et en font perdre. À la fin du chrono, le total des points détermine laquelle des <strong>quatre fins</strong> s’affiche.</p>
+                  <p data-lang="en">In a messy apartment, every object (drawer, desk, couch…) hides <strong>a mini-game specific to that object</strong>. Each piece of evidence found earns points, but be careful: some aren’t credible and cost points instead. When the timer runs out, the total score decides which of the <strong>four endings</strong> is shown.</p>
                 </div>
                 <figure>
                   <img src="images/i-saw-it/concept.jpg" alt="Mini-jeu de fouille">
-                  <figcaption>Chaque objet fouillé ouvre un mini-jeu différent</figcaption>
+                  <figcaption data-lang="fr">Chaque objet fouillé ouvre un mini-jeu différent</figcaption>
+                  <figcaption data-lang="en">Each object you search opens a different mini-game</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>I saw It a été réalisé en 4 jours lors d’une <strong>game jam</strong> organisée par mon école. <strong>J’ai proposé le concept</strong>, et une équipe de 9 personnes s’est formée autour du projet : 3 game artists, 3 game programmers, 1 sound designer et 2 game designers.</p>
-                  <p>Après avoir défini les règles générales et les mini-jeux associés à chaque objet, j’ai pris en charge le <strong>choix de toutes les preuves</strong> et <strong>l’équilibrage des points</strong> de chaque objet. Avec l’autre game designer, nous avons conçu le level design de l’appartement et le pacing de la difficulté pour atteindre chaque preuve. J’ai ensuite placé chaque preuve dans l’appartement et associé les mini-jeux aux bons objets, avant de finaliser la lisibilité et l’accessibilité des preuves.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">I saw It a été réalisé en 4 jours lors d’une <strong>game jam</strong> organisée par mon école. <strong>J’ai proposé le concept</strong>, et une équipe de 9 personnes s’est formée autour du projet : 3 game artists, 3 game programmers, 1 sound designer et 2 game designers.</p>
+                  <p data-lang="en">I saw It was made in 4 days during a <strong>game jam</strong> organized by my school. <strong>I pitched the concept</strong>, and a team of 9 people formed around the project: 3 game artists, 3 game programmers, 1 sound designer and 2 game designers.</p>
+                  <p data-lang="fr">Après avoir défini les règles générales et les mini-jeux associés à chaque objet, j’ai pris en charge le <strong>choix de toutes les preuves</strong> et <strong>l’équilibrage des points</strong> de chaque objet. Avec l’autre game designer, nous avons conçu le level design de l’appartement et le pacing de la difficulté pour atteindre chaque preuve. J’ai ensuite placé chaque preuve dans l’appartement et associé les mini-jeux aux bons objets, avant de finaliser la lisibilité et l’accessibilité des preuves.</p>
+                  <p data-lang="en">After defining the general rules and the mini-games tied to each object, I took charge of <strong>choosing all the evidence</strong> and <strong>balancing the points</strong> for each object. With the other game designer, we designed the level design of the apartment and the difficulty pacing for reaching each piece of evidence. I then placed every piece of evidence in the apartment and assigned the mini-games to the right objects, before polishing the readability and accessibility of the evidence.</p>
                 </div>
                 <figure>
                   <img src="images/i-saw-it/mon-role.jpg" alt="Mini-jeu du coffre">
-                  <figcaption>Un mini-jeu associé à un tiroir</figcaption>
+                  <figcaption data-lang="fr">Un mini-jeu associé à un tiroir</figcaption>
+                  <figcaption data-lang="en">A mini-game tied to a drawer</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Le format game jam imposait des itérations rapides, et le jeu n’a pas pu être testé par des joueurs extérieurs. Chaque décision a donc été guidée par deux objectifs : <strong>un jeu lisible</strong> sans multiplier les indications, et <strong>un jeu rejouable</strong>.</p>
-                  <p>Pour la lisibilité, nous avons réduit l’interface en jeu au strict minimum : c’est <strong>la cinématique d’introduction</strong> qui pose l’enjeu et fait comprendre au joueur ce qu’il doit faire.</p>
-                  <p>Pour la rejouabilité, le jeu repose sur <strong>la maîtrise du parcours</strong> : le temps étant limité, il faut planifier son trajet dans l’appartement pour être efficace, et c’est en enchaînant les parties que le joueur apprend à l’optimiser.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Le format game jam imposait des itérations rapides, et le jeu n’a pas pu être testé par des joueurs extérieurs. Chaque décision a donc été guidée par deux objectifs : <strong>un jeu lisible</strong> sans multiplier les indications, et <strong>un jeu rejouable</strong>.</p>
+                  <p data-lang="en">The game jam format called for fast iterations, and the game couldn’t be tested by outside players. Every decision was therefore guided by two goals: <strong>a readable game</strong> without piling on instructions, and <strong>a replayable game</strong>.</p>
+                  <p data-lang="fr">Pour la lisibilité, nous avons réduit l’interface en jeu au strict minimum : c’est <strong>la cinématique d’introduction</strong> qui pose l’enjeu et fait comprendre au joueur ce qu’il doit faire.</p>
+                  <p data-lang="en">For readability, we kept the in-game interface to the bare minimum: it’s <strong>the intro cutscene</strong> that sets the stakes and shows the player what to do.</p>
+                  <p data-lang="fr">Pour la rejouabilité, le jeu repose sur <strong>la maîtrise du parcours</strong> : le temps étant limité, il faut planifier son trajet dans l’appartement pour être efficace, et c’est en enchaînant les parties que le joueur apprend à l’optimiser.</p>
+                  <p data-lang="en">For replayability, the game relies on <strong>mastering your route</strong>: with limited time, you have to plan your path through the apartment to be efficient, and it’s by playing again and again that the player learns to optimize it.</p>
                 </div>
                 <figure>
                   <img src="images/i-saw-it/defis.jpg" alt="Cinématique d'introduction">
-                  <figcaption>La cinématique d'introduction pose l'enjeu, ce qui permet de garder une interface minimale en jeu</figcaption>
+                  <figcaption data-lang="fr">La cinématique d'introduction pose l'enjeu, ce qui permet de garder une interface minimale en jeu</figcaption>
+                  <figcaption data-lang="en">The intro cutscene sets the stakes, which keeps the in-game interface minimal</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>À l’issue des 4 jours, le jeu est <strong>complet et jouable de bout en bout</strong>, avec quatre fins différentes. Une seule fonctionnalité secondaire n’a pas pu être intégrée, ce qui est rare en game jam. Faute de playtests, la difficulté reste en revanche trop élevée.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">À l’issue des 4 jours, le jeu est <strong>complet et jouable de bout en bout</strong>, avec quatre fins différentes. Une seule fonctionnalité secondaire n’a pas pu être intégrée, ce qui est rare en game jam. Faute de playtests, la difficulté reste en revanche trop élevée.</p>
+                  <p data-lang="en">By the end of the 4 days, the game was <strong>complete and playable from start to finish</strong>, with four different endings. Only one secondary feature couldn’t be implemented, which is rare in a game jam. Without playtests, however, the difficulty remains too high.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce projet m’a appris à <strong>prendre des décisions rapidement</strong>, à travailler avec de nombreux métiers différents et à tenir compte de la charge de travail de chacun. Avec le recul, j’aurais aimé réserver du temps aux playtests pour calibrer la difficulté et pousser le jeu encore plus loin.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce projet m’a appris à <strong>prendre des décisions rapidement</strong>, à travailler avec de nombreux métiers différents et à tenir compte de la charge de travail de chacun. Avec le recul, j’aurais aimé réserver du temps aux playtests pour calibrer la difficulté et pousser le jeu encore plus loin.</p>
+                  <p data-lang="en">This project taught me to <strong>make decisions quickly</strong>, to work with many different disciplines and to take everyone’s workload into account. Looking back, I wish we had set aside time for playtests to calibrate the difficulty and push the game even further.</p>
                 </div>
               </section>
             </template>
@@ -161,72 +194,92 @@
             <!-- La note scotchée sous la photo -->
             <div class="note">
               <h3>Off Beat</h3>
-              <p class="short">Brawler · Projet scolaire · Unity · 2025</p>
-              <p class="desc">Traversez une usine remplie de robots et combattez en rythme pour atteindre votre manager</p>
+              <p class="short" data-lang="fr">Brawler · Projet scolaire · Unity · 2025</p>
+              <p class="short" data-lang="en">Brawler · School project · Unity · 2025</p>
+              <p class="desc" data-lang="fr">Traversez une usine remplie de robots et combattez en rythme pour atteindre votre manager</p>
+              <p class="desc" data-lang="en">Fight your way through a robot-filled factory, on the beat, to reach your manager</p>
             </div>
             <template class="details">
               <iframe class="media" src="https://www.youtube-nocookie.com/embed/aBMXpjUnYjE" title="Trailer d'Off Beat" allowfullscreen></iframe>
               <h3>Off Beat</h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer · Direction artistique</li>
-                <li><strong>Moteur / outils</strong> Unity</li>
-                <li><strong>Durée</strong> 2 mois</li>
-                <li><strong>Équipe</strong> 8 personnes</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer · Direction artistique</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer · Art direction</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Unity</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Unity</li>
+                <li data-lang="fr"><strong>Durée</strong> 2 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 2 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> 8 personnes</li>
+                <li data-lang="en"><strong>Team</strong> 8 people</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Off Beat est un brawler 3D dans lequel le joueur incarne un robot rebelle, prisonnier d’une usine réglée au métronome. Sa programmation le soumet au tempo imposé… mais cette contrainte peut devenir une force : <strong>en se battant en rythme</strong>, il peut éliminer le manager de l’usine et gagner sa liberté.</p>
-                  <p>Le joueur doit attaquer et esquiver en restant sur la musique, sous peine de subir des malus. <strong>Plus il reste dans le rythme, plus il inflige de dégâts</strong>. Les ennemis, eux aussi, attaquent et se repositionnent en rythme.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Off Beat est un brawler 3D dans lequel le joueur incarne un robot rebelle, prisonnier d’une usine réglée au métronome. Sa programmation le soumet au tempo imposé… mais cette contrainte peut devenir une force : <strong>en se battant en rythme</strong>, il peut éliminer le manager de l’usine et gagner sa liberté.</p>
+                  <p data-lang="en">Off Beat is a 3D brawler in which the player is a rebel robot, trapped in a factory ticking to a metronome. Its programming forces it to follow the imposed tempo… but that constraint can become a strength: <strong>by fighting on the beat</strong>, it can take down the factory manager and win its freedom.</p>
+                  <p data-lang="fr">Le joueur doit attaquer et esquiver en restant sur la musique, sous peine de subir des malus. <strong>Plus il reste dans le rythme, plus il inflige de dégâts</strong>. Les ennemis, eux aussi, attaquent et se repositionnent en rythme.</p>
+                  <p data-lang="en">The player must attack and dodge in time with the music, or suffer penalties. <strong>The longer they stay on the beat, the more damage they deal</strong>. Enemies also attack and reposition on the beat.</p>
                 </div>
                 <figure>
                   <img src="images/off-beat/concept.jpg" alt="Combat en rythme">
-                  <figcaption>Le combat : chaque attaque doit tomber sur le tempo</figcaption>
+                  <figcaption data-lang="fr">Le combat : chaque attaque doit tomber sur le tempo</figcaption>
+                  <figcaption data-lang="en">Combat: every attack has to land on the beat</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Off Beat a été réalisé en 2 mois dans le cadre d’un exercice dont la contrainte était de créer un brawler 3D. Les équipes étaient imposées : nous étions 5 game designers et 3 sound designers. Tout le game design a été mené en groupe, aussi bien les règles liées au rythme que la conception des ennemis.</p>
-                  <p>En parallèle, je me suis occupé de la <strong>direction artistique</strong> : j’ai sélectionné les modèles 3D, puis je les ai <strong>riggés et animés</strong>, j’ai placé les effets visuels des ennemis et cherché les éléments pour habiller les niveaux. Je ne connaissais rien à l’animation au départ : j’ai tout appris pendant le projet. Je me suis également chargé des ascenseurs qui servent de transition entre les niveaux.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Off Beat a été réalisé en 2 mois dans le cadre d’un exercice dont la contrainte était de créer un brawler 3D. Les équipes étaient imposées : nous étions 5 game designers et 3 sound designers. Tout le game design a été mené en groupe, aussi bien les règles liées au rythme que la conception des ennemis.</p>
+                  <p data-lang="en">Off Beat was made in 2 months as part of an assignment whose constraint was to create a 3D brawler. Teams were assigned: there were 5 game designers and 3 sound designers. All of the game design was done as a group, from the rhythm-based rules to the enemy design.</p>
+                  <p data-lang="fr">En parallèle, je me suis occupé de la <strong>direction artistique</strong> : j’ai sélectionné les modèles 3D, puis je les ai <strong>riggés et animés</strong>, j’ai placé les effets visuels des ennemis et cherché les éléments pour habiller les niveaux. Je ne connaissais rien à l’animation au départ : j’ai tout appris pendant le projet. Je me suis également chargé des ascenseurs qui servent de transition entre les niveaux.</p>
+                  <p data-lang="en">Alongside that, I handled the <strong>art direction</strong>: I selected the 3D models, then <strong>rigged and animated</strong> them, placed the enemies’ visual effects and looked for assets to dress the levels. I knew nothing about animation at the start: I learned everything during the project. I also took care of the elevators that serve as transitions between levels.</p>
                 </div>
                 <figure>
                   <img src="images/off-beat/mon-role.jpg" alt="Le boss d'Off Beat">
-                  <figcaption>Le boss : rig, animations et effets visuels</figcaption>
+                  <figcaption data-lang="fr">Le boss : rig, animations et effets visuels</figcaption>
+                  <figcaption data-lang="en">The boss: rig, animations and visual effects</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Deux points ont été particulièrement difficiles à designer.</p>
-                  <p>Le premier, et le plus complexe : faire comprendre au joueur ce qu’il fait de bien ou de mal. Nous avons donc beaucoup travaillé <strong>les feedbacks et l’interface</strong> pour aider le joueur à rester dans le rythme. Par exemple, toute l’interface bouge au rythme de la musique, et un cercle placé aux pieds du joueur suit lui aussi le tempo.</p>
-                  <p>Le second : les ennemis. Un bon brawler repose sur de bons ennemis, et les combiner avec un jeu de rythme devient vite un vrai casse-tête. Nous avons conçu <strong>quatre ennemis très différents</strong> pour offrir un maximum de variété : l’un fonce simplement sur le joueur, un autre lance des projectiles depuis un coin de la pièce, un troisième tire un laser dans sa direction, et le quatrième crée une attaque électrique autour de lui.</p>
-                  <p>Enfin, faute de temps pour concevoir un boss entièrement nouveau, nous avons construit le combat final en <strong>combinant les comportements des quatre ennemis</strong> dans une version améliorée : un affrontement qui reprend tout ce que le joueur a appris.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Deux points ont été particulièrement difficiles à designer.</p>
+                  <p data-lang="en">Two aspects were particularly difficult to design.</p>
+                  <p data-lang="fr">Le premier, et le plus complexe : faire comprendre au joueur ce qu’il fait de bien ou de mal. Nous avons donc beaucoup travaillé <strong>les feedbacks et l’interface</strong> pour aider le joueur à rester dans le rythme. Par exemple, toute l’interface bouge au rythme de la musique, et un cercle placé aux pieds du joueur suit lui aussi le tempo.</p>
+                  <p data-lang="en">The first, and the most complex: making the player understand what they are doing right or wrong. We put a lot of work into <strong>feedback and the interface</strong> to help the player stay on the beat. For example, the whole interface moves to the music, and a circle at the player’s feet also follows the tempo.</p>
+                  <p data-lang="fr">Le second : les ennemis. Un bon brawler repose sur de bons ennemis, et les combiner avec un jeu de rythme devient vite un vrai casse-tête. Nous avons conçu <strong>quatre ennemis très différents</strong> pour offrir un maximum de variété : l’un fonce simplement sur le joueur, un autre lance des projectiles depuis un coin de la pièce, un troisième tire un laser dans sa direction, et le quatrième crée une attaque électrique autour de lui.</p>
+                  <p data-lang="en">The second: the enemies. A good brawler relies on good enemies, and combining them with a rhythm game quickly becomes a real puzzle. We designed <strong>four very different enemies</strong> to offer as much variety as possible: one simply charges at the player, another throws projectiles from a corner of the room, a third fires a laser in their direction, and the fourth creates an electric attack around itself.</p>
+                  <p data-lang="fr">Enfin, faute de temps pour concevoir un boss entièrement nouveau, nous avons construit le combat final en <strong>combinant les comportements des quatre ennemis</strong> dans une version améliorée : un affrontement qui reprend tout ce que le joueur a appris.</p>
+                  <p data-lang="en">Finally, lacking the time to design an entirely new boss, we built the final fight by <strong>combining the behaviors of the four enemies</strong> into an upgraded version: a showdown that draws on everything the player has learned.</p>
                 </div>
                 <figure>
                   <img src="images/off-beat/defis.jpg" alt="Combat contre le boss">
-                  <figcaption>Le boss reprend les attaques des autres ennemis : laser, zone électrique… Le cercle aux pieds du joueur et l'interface battent la mesure.</figcaption>
+                  <figcaption data-lang="fr">Le boss reprend les attaques des autres ennemis : laser, zone électrique… Le cercle aux pieds du joueur et l'interface battent la mesure.</figcaption>
+                  <figcaption data-lang="en">The boss reuses the other enemies’ attacks: laser, electric zone… The circle at the player’s feet and the interface keep the beat.</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>À l’issue des 2 mois, le jeu propose <strong>un niveau complet</strong>, composé de plusieurs étages jusqu’à la salle du boss. Seul l’habillage des niveaux reste incomplet : nous visions une direction artistique inspirée du gigantisme, mais nous avons choisi de concentrer le temps restant sur le gameplay.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">À l’issue des 2 mois, le jeu propose <strong>un niveau complet</strong>, composé de plusieurs étages jusqu’à la salle du boss. Seul l’habillage des niveaux reste incomplet : nous visions une direction artistique inspirée du gigantisme, mais nous avons choisi de concentrer le temps restant sur le gameplay.</p>
+                  <p data-lang="en">After 2 months, the game offers <strong>a complete level</strong>, made up of several floors leading to the boss room. Only the level dressing remains unfinished: we were aiming for an art direction inspired by gigantism, but we chose to focus the remaining time on gameplay.</p>
                 </div>
                 <figure>
                   <img src="images/off-beat/resultat.jpg" alt="Un étage de l'usine">
-                  <figcaption>Un étage de l'usine, avec plusieurs types d'ennemis</figcaption>
+                  <figcaption data-lang="fr">Un étage de l'usine, avec plusieurs types d'ennemis</figcaption>
+                  <figcaption data-lang="en">A factory floor with several types of enemies</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce projet m’a beaucoup appris, aussi bien sur la conception d’un jeu de rythme que sur <strong>la 3D, le rigging et l’animation</strong>, que j’ai découverts pendant le projet. Avec le recul, j’aurais aimé mieux habiller les niveaux pour donner au jeu un rendu plus abouti.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce projet m’a beaucoup appris, aussi bien sur la conception d’un jeu de rythme que sur <strong>la 3D, le rigging et l’animation</strong>, que j’ai découverts pendant le projet. Avec le recul, j’aurais aimé mieux habiller les niveaux pour donner au jeu un rendu plus abouti.</p>
+                  <p data-lang="en">This project taught me a lot, both about designing a rhythm game and about <strong>3D, rigging and animation</strong>, which I discovered during the project. Looking back, I wish I had dressed the levels better to give the game a more polished look.</p>
                 </div>
               </section>
             </template>
@@ -237,79 +290,99 @@
             <!-- La note scotchée sous la photo -->
             <div class="note">
               <h3>Switch</h3>
-              <p class="short">Plateformer 2.5D · Projet scolaire · Unity · 2025</p>
-              <p class="desc">Échappez-vous du château grâce à vos pouvoirs de télékinésie</p>
+              <p class="short" data-lang="fr">Plateformer 2.5D · Projet scolaire · Unity · 2025</p>
+              <p class="short" data-lang="en">2.5D platformer · School project · Unity · 2025</p>
+              <p class="desc" data-lang="fr">Échappez-vous du château grâce à vos pouvoirs de télékinésie</p>
+              <p class="desc" data-lang="en">Escape the castle using your telekinetic powers</p>
             </div>
             <template class="details">
               <iframe class="media" src="https://www.youtube-nocookie.com/embed/EpBY6Lz-mgE" title="Trailer de Switch" allowfullscreen></iframe>
               <h3>Switch</h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer · Level Designer</li>
-                <li><strong>Moteur / outils</strong> Unity</li>
-                <li><strong>Durée</strong> 2 mois</li>
-                <li><strong>Équipe</strong> 9 personnes</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer · Level Designer</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer · Level Designer</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Unity</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Unity</li>
+                <li data-lang="fr"><strong>Durée</strong> 2 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 2 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> 9 personnes</li>
+                <li data-lang="en"><strong>Team</strong> 9 people</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Switch est un plateformer en 2,5D dans lequel le joueur incarne <strong>une petite sorcière enfermée dans un château</strong>. Pour retrouver sa liberté, elle doit utiliser ses pouvoirs afin de se frayer un chemin jusqu’à la sortie.</p>
-                  <p>Grâce à la <strong>télékinésie</strong>, le joueur peut activer ou désactiver des murs, et déplacer des plateformes pour progresser ou s’en servir comme bouclier contre les projectiles.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Switch est un plateformer en 2,5D dans lequel le joueur incarne <strong>une petite sorcière enfermée dans un château</strong>. Pour retrouver sa liberté, elle doit utiliser ses pouvoirs afin de se frayer un chemin jusqu’à la sortie.</p>
+                  <p data-lang="en">Switch is a 2.5D platformer in which the player is <strong>a little witch locked in a castle</strong>. To regain her freedom, she must use her powers to make her way to the exit.</p>
+                  <p data-lang="fr">Grâce à la <strong>télékinésie</strong>, le joueur peut activer ou désactiver des murs, et déplacer des plateformes pour progresser ou s’en servir comme bouclier contre les projectiles.</p>
+                  <p data-lang="en">With <strong>telekinesis</strong>, the player can turn walls on or off, and move platforms to progress or use them as shields against projectiles.</p>
                 </div>
                 <figure>
                   <img src="images/switch/concept.jpg" alt="Murs activables">
-                  <figcaption>Les murs activables : opaques quand ils sont actifs, translucides quand ils sont désactivés</figcaption>
+                  <figcaption data-lang="fr">Les murs activables : opaques quand ils sont actifs, translucides quand ils sont désactivés</figcaption>
+                  <figcaption data-lang="en">Toggleable walls: opaque when active, translucent when deactivated</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Switch a été réalisé dans le cadre d’un exercice dont la contrainte était de créer un plateformer en 2,5D. C’était notre <strong>premier projet inter-cursus</strong> : les équipes étaient imposées, et nous étions 5 game designers, 2 game programmers et 2 sound designers.</p>
-                  <p>Après avoir beaucoup itéré en groupe sur le concept, chaque game designer a pris en charge un niveau. <strong>Je me suis occupé du dernier</strong>, un étage envahi de boules de feu. Le défi était d’y introduire une nouvelle mécanique tout en garantissant la difficulté attendue d’un niveau final. J’ai travaillé <strong>en étroite collaboration avec les programmeurs</strong> pour savoir ce qui était réalisable dans le temps imparti.</p>
-                  <p>Plus largement, j’ai beaucoup servi de <strong>lien entre les différents cursus</strong>, pour que toute l’équipe garde la même vision globale du projet.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Switch a été réalisé dans le cadre d’un exercice dont la contrainte était de créer un plateformer en 2,5D. C’était notre <strong>premier projet inter-cursus</strong> : les équipes étaient imposées, et nous étions 5 game designers, 2 game programmers et 2 sound designers.</p>
+                  <p data-lang="en">Switch was made as part of an assignment whose constraint was to create a 2.5D platformer. It was our <strong>first cross-discipline project</strong>: teams were assigned, and there were 5 game designers, 2 game programmers and 2 sound designers.</p>
+                  <p data-lang="fr">Après avoir beaucoup itéré en groupe sur le concept, chaque game designer a pris en charge un niveau. <strong>Je me suis occupé du dernier</strong>, un étage envahi de boules de feu. Le défi était d’y introduire une nouvelle mécanique tout en garantissant la difficulté attendue d’un niveau final. J’ai travaillé <strong>en étroite collaboration avec les programmeurs</strong> pour savoir ce qui était réalisable dans le temps imparti.</p>
+                  <p data-lang="en">After a lot of group iteration on the concept, each game designer took charge of one level. <strong>I handled the last one</strong>, a floor overrun by fireballs. The challenge was to introduce a new mechanic while delivering the difficulty expected of a final level. I worked <strong>closely with the programmers</strong> to know what was achievable in the time available.</p>
+                  <p data-lang="fr">Plus largement, j’ai beaucoup servi de <strong>lien entre les différents cursus</strong>, pour que toute l’équipe garde la même vision globale du projet.</p>
+                  <p data-lang="en">More broadly, I often acted as the <strong>link between the different disciplines</strong>, so that the whole team kept the same overall vision of the project.</p>
                 </div>
                 <figure>
                   <img src="images/switch/mon-role.jpg" alt="Niveau des boules de feu">
-                  <figcaption>Mon niveau : un étage envahi de boules de feu</figcaption>
+                  <figcaption data-lang="fr">Mon niveau : un étage envahi de boules de feu</figcaption>
+                  <figcaption data-lang="en">My level: a floor overrun by fireballs</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>La principale difficulté a été <strong>le concept lui-même</strong>. Nous avons passé beaucoup de temps à proposer des idées qui se sont révélées irréalisables ou trop ambitieuses pour nos délais. Le problème était d’autant plus important que les programmeurs et les sound designers commençaient parfois à travailler sur des concepts finalement abandonnés.</p>
-                  <p>Une autre grande partie de nos itérations a porté sur l’identité de chaque niveau. Nous voulions que chacun ait <strong>sa propre USP</strong>, une vraie identité. La difficulté était de trouver des différences assez marquées pour avoir de la matière à développer, sans être bloqués par les limites de notre mécanique principale. Mon niveau reposait sur les boules de feu : je devais créer des situations variées sans que le joueur puisse contrôler directement les lanceurs. J’ai donc utilisé les plateformes mobiles et les murs activables pour <strong>créer des abris</strong>, que le joueur doit manipuler pour se protéger pendant les salves de boules de feu.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">La principale difficulté a été <strong>le concept lui-même</strong>. Nous avons passé beaucoup de temps à proposer des idées qui se sont révélées irréalisables ou trop ambitieuses pour nos délais. Le problème était d’autant plus important que les programmeurs et les sound designers commençaient parfois à travailler sur des concepts finalement abandonnés.</p>
+                  <p data-lang="en">The main difficulty was <strong>the concept itself</strong>. We spent a lot of time proposing ideas that turned out to be unfeasible or too ambitious for our deadlines. The problem was all the more significant because the programmers and sound designers sometimes started working on concepts that were later abandoned.</p>
+                  <p data-lang="fr">Une autre grande partie de nos itérations a porté sur l’identité de chaque niveau. Nous voulions que chacun ait <strong>sa propre USP</strong>, une vraie identité. La difficulté était de trouver des différences assez marquées pour avoir de la matière à développer, sans être bloqués par les limites de notre mécanique principale. Mon niveau reposait sur les boules de feu : je devais créer des situations variées sans que le joueur puisse contrôler directement les lanceurs. J’ai donc utilisé les plateformes mobiles et les murs activables pour <strong>créer des abris</strong>, que le joueur doit manipuler pour se protéger pendant les salves de boules de feu.</p>
+                  <p data-lang="en">Another big part of our iterations focused on the identity of each level. We wanted each one to have <strong>its own USP</strong>, a real identity. The difficulty was finding differences strong enough to give us material to develop, without being held back by the limits of our core mechanic. My level was built around fireballs: I had to create varied situations even though the player can’t directly control the launchers. So I used moving platforms and toggleable walls to <strong>create shelters</strong>, which the player has to manipulate to stay protected during fireball volleys.</p>
                 </div>
                 <figure>
                   <img src="images/switch/defis.jpg" alt="Abris contre les boules de feu">
-                  <figcaption>Les murs et plateformes deviennent des abris pendant les salves</figcaption>
+                  <figcaption data-lang="fr">Les murs et plateformes deviennent des abris pendant les salves</figcaption>
+                  <figcaption data-lang="en">Walls and platforms become shelters during the volleys</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>Le jeu compte aujourd’hui <strong>cinq niveaux jouables</strong> qui s’enchaînent jusqu’à l’évasion du château. Il manque encore quelques détails visuels : en début de formation, chaque tâche demandait beaucoup de temps, et nous avons donné la priorité au gameplay plutôt qu’à la direction artistique.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">Le jeu compte aujourd’hui <strong>cinq niveaux jouables</strong> qui s’enchaînent jusqu’à l’évasion du château. Il manque encore quelques détails visuels : en début de formation, chaque tâche demandait beaucoup de temps, et nous avons donné la priorité au gameplay plutôt qu’à la direction artistique.</p>
+                  <p data-lang="en">The game now has <strong>five playable levels</strong> that lead up to the escape from the castle. A few visual details are still missing: early in our training, every task took a lot of time, and we prioritized gameplay over art direction.</p>
                 </div>
                 <figure>
                   <img src="images/switch/resultat.jpg" alt="Salle piégée du château de Switch">
-                  <figcaption>Une salle du jeu final</figcaption>
+                  <figcaption data-lang="fr">Une salle du jeu final</figcaption>
+                  <figcaption data-lang="en">A room from the final game</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce premier projet avec d’autres filières m’a appris à m’adapter à leurs contraintes et à leurs besoins, ainsi qu’à <strong>gérer les désaccords</strong> au sein de l’équipe. Ce fut aussi un bon exercice pour apprendre à ne pas trop s’attacher à ses idées pendant les phases de brainstorming. Avec le recul, j’aurais aimé passer plus de temps sur le debug avec les programmeurs.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce premier projet avec d’autres filières m’a appris à m’adapter à leurs contraintes et à leurs besoins, ainsi qu’à <strong>gérer les désaccords</strong> au sein de l’équipe. Ce fut aussi un bon exercice pour apprendre à ne pas trop s’attacher à ses idées pendant les phases de brainstorming. Avec le recul, j’aurais aimé passer plus de temps sur le debug avec les programmeurs.</p>
+                  <p data-lang="en">This first project with other disciplines taught me to adapt to their constraints and needs, and to <strong>handle disagreements</strong> within the team. It was also good practice in not getting too attached to my ideas during brainstorming phases. Looking back, I wish I had spent more time debugging with the programmers.</p>
                 </div>
               </section>
             </template>
           </article>
 
         </div>
-        <h2 class="zone-title">Projets Jeux Vidéo</h2>
-        <p class="zone-desc">Ce sont des projets scolaires ou personnels, réalisés en solo ou en équipe</p>
+        <h2 class="zone-title"><span data-lang="fr">Projets Jeux Vidéo</span><span data-lang="en">Video Game Projects</span></h2>
+        <p class="zone-desc" data-lang="fr">Ce sont des projets scolaires ou personnels, réalisés en solo ou en équipe</p>
+        <p class="zone-desc" data-lang="en">School and personal projects, made solo or in a team</p>
       </section>
 
       <!-- ---------- CATÉGORIE 2 (à droite) ---------- -->
@@ -320,71 +393,89 @@
             <img class="thumb" src="images/escalade/vignette.jpg" alt="Bloc d'escalade">
             <!-- La note scotchée sous la photo -->
             <div class="note">
-              <h3>Bloc d'Escalade</h3>
-              <p class="short">Modélisation 3D · Projet scolaire · Blender · 2026</p>
-              <p class="desc">Le Level Design appliqué à l’escalade, concevoir un bloc comme on construit un niveau</p>
+              <h3><span data-lang="fr">Bloc d'Escalade</span><span data-lang="en">Climbing Boulder</span></h3>
+              <p class="short" data-lang="fr">Modélisation 3D · Projet scolaire · Blender · 2026</p>
+              <p class="short" data-lang="en">3D modeling · School project · Blender · 2026</p>
+              <p class="desc" data-lang="fr">Le Level Design appliqué à l’escalade, concevoir un bloc comme on construit un niveau</p>
+              <p class="desc" data-lang="en">Level design applied to climbing: designing a boulder the way you build a level</p>
             </div>
             <template class="details">
               <img class="media" src="images/escalade/entete.jpg" alt="Le bloc d'escalade complet">
-              <h3>Bloc d'Escalade</h3>
+              <h3><span data-lang="fr">Bloc d'Escalade</span><span data-lang="en">Climbing Boulder</span></h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Level Designer · Modeleur 3D</li>
-                <li><strong>Moteur / outils</strong> Blender</li>
-                <li><strong>Durée</strong> 3 mois</li>
-                <li><strong>Équipe</strong> solo</li>
+                <li data-lang="fr"><strong>Rôle</strong> Level Designer · Modeleur 3D</li>
+                <li data-lang="en"><strong>Role</strong> Level Designer · 3D Modeler</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Blender</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Blender</li>
+                <li data-lang="fr"><strong>Durée</strong> 3 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 3 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> solo</li>
+                <li data-lang="en"><strong>Team</strong> solo</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Pour ce projet, je voulais concevoir un bloc d’escalade en m’appuyant sur mes connaissances en level design. Comme je ne pouvais en réaliser qu’un seul, j’ai choisi de le rendre très varié, en termes de mouvements comme de techniques à mobiliser pour le réussir. Côté level design, mon objectif était d’approfondir ma compréhension de <strong>la courbe d’intensité</strong>, en l’adaptant à des <strong>contraintes physiques</strong>.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Pour ce projet, je voulais concevoir un bloc d’escalade en m’appuyant sur mes connaissances en level design. Comme je ne pouvais en réaliser qu’un seul, j’ai choisi de le rendre très varié, en termes de mouvements comme de techniques à mobiliser pour le réussir. Côté level design, mon objectif était d’approfondir ma compréhension de <strong>la courbe d’intensité</strong>, en l’adaptant à des <strong>contraintes physiques</strong>.</p>
+                  <p data-lang="en">For this project, I wanted to design a boulder problem using my level design knowledge. Since I could only make one, I chose to make it very varied, in terms of both the moves and the techniques needed to climb it. On the level design side, my goal was to deepen my understanding of <strong>the intensity curve</strong> by adapting it to <strong>physical constraints</strong>.</p>
                 </div>
                 <figure>
                   <img src="images/escalade/concept.jpg" alt="Découpage du bloc en passages">
-                  <figcaption>Le bloc découpé en passages, chacun avec son propre mouvement</figcaption>
+                  <figcaption data-lang="fr">Le bloc découpé en passages, chacun avec son propre mouvement</figcaption>
+                  <figcaption data-lang="en">The boulder broken down into sections, each with its own move</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Ce projet répondait à un exercice dont la consigne était de réaliser un projet en lien avec le jeu vidéo, sans que ce soit un jeu. Je me suis tourné vers l’escalade, un sport que je pratique depuis plusieurs années. Pour concevoir ce bloc, j’ai travaillé avec <strong>un ouvreur professionnel</strong>, Christophe Rondepierre, qui m’a accompagné tout au long de la production.</p>
-                  <p>J’ai commencé par dessiner des <strong>croquis du bloc</strong> : le type de prises, l’inclinaison du mur et les mouvements que je voulais faire réaliser aux grimpeurs. J’ai ensuite beaucoup échangé avec Christophe pour vérifier <strong>la faisabilité de chaque passage</strong>, sur le plan physique comme technique.</p>
-                  <p>Une fois la faisabilité validée, j’ai <strong>sculpté toutes les prises dans Blender</strong> pour qu’elles correspondent à mes croquis. Je les ai ensuite placées sur le mur en m’aidant d’<strong>un mannequin</strong> pour tester les distances et les proportions, afin que le bloc soit réellement grimpable une fois installé. Après une dernière série de vérifications avec Christophe, le bloc était terminé et réaliste.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Ce projet répondait à un exercice dont la consigne était de réaliser un projet en lien avec le jeu vidéo, sans que ce soit un jeu. Je me suis tourné vers l’escalade, un sport que je pratique depuis plusieurs années. Pour concevoir ce bloc, j’ai travaillé avec <strong>un ouvreur professionnel</strong>, Christophe Rondepierre, qui m’a accompagné tout au long de la production.</p>
+                  <p data-lang="en">This project answered an assignment whose brief was to create something related to video games, without it being a game. I turned to climbing, a sport I have practiced for several years. To design this boulder, I worked with <strong>a professional route setter</strong>, Christophe Rondepierre, who supported me throughout production.</p>
+                  <p data-lang="fr">J’ai commencé par dessiner des <strong>croquis du bloc</strong> : le type de prises, l’inclinaison du mur et les mouvements que je voulais faire réaliser aux grimpeurs. J’ai ensuite beaucoup échangé avec Christophe pour vérifier <strong>la faisabilité de chaque passage</strong>, sur le plan physique comme technique.</p>
+                  <p data-lang="en">I started by drawing <strong>sketches of the boulder</strong>: the type of holds, the wall angle and the moves I wanted climbers to perform. I then had many discussions with Christophe to check <strong>the feasibility of each section</strong>, both physically and technically.</p>
+                  <p data-lang="fr">Une fois la faisabilité validée, j’ai <strong>sculpté toutes les prises dans Blender</strong> pour qu’elles correspondent à mes croquis. Je les ai ensuite placées sur le mur en m’aidant d’<strong>un mannequin</strong> pour tester les distances et les proportions, afin que le bloc soit réellement grimpable une fois installé. Après une dernière série de vérifications avec Christophe, le bloc était terminé et réaliste.</p>
+                  <p data-lang="en">Once feasibility was confirmed, I <strong>sculpted all the holds in Blender</strong> to match my sketches. I then placed them on the wall with the help of <strong>a mannequin</strong> to test distances and proportions, so that the boulder would actually be climbable once installed. After a final round of checks with Christophe, the boulder was finished and realistic.</p>
                 </div>
                 <figure>
                   <img src="images/escalade/mon-role.jpg" alt="Croquis du bloc">
-                  <figcaption>Un des premiers croquis : l'inclinaison du mur et le placement des prises</figcaption>
+                  <figcaption data-lang="fr">Un des premiers croquis : l'inclinaison du mur et le placement des prises</figcaption>
+                  <figcaption data-lang="en">One of the first sketches: the wall angle and hold placement</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Le plus grand défi a été de <strong>rester réaliste et de garder une échelle cohérente</strong> : c’est pourquoi la phase de test avec le mannequin a été essentielle. Adapter un concept de level design à un cas concret, soumis à des contraintes physiques et techniques, s’est aussi révélé plus complexe que je ne l’imaginais.</p>
-                  <p>Par exemple, le passage le plus impressionnant est aussi le plus difficile, et marque <strong>le pic de la courbe d’intensité</strong> : le grimpeur doit se jeter pour atteindre une prise, puis se repositionner immédiatement pour absorber l’élan du saut et ne pas tomber. Une fois dans une position stable, il peut souffler avant de repartir vers la fin du bloc.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Le plus grand défi a été de <strong>rester réaliste et de garder une échelle cohérente</strong> : c’est pourquoi la phase de test avec le mannequin a été essentielle. Adapter un concept de level design à un cas concret, soumis à des contraintes physiques et techniques, s’est aussi révélé plus complexe que je ne l’imaginais.</p>
+                  <p data-lang="en">The biggest challenge was to <strong>stay realistic and keep a consistent scale</strong>, which is why the mannequin testing phase was essential. Adapting a level design concept to a real-world case, subject to physical and technical constraints, also turned out to be more complex than I had imagined.</p>
+                  <p data-lang="fr">Par exemple, le passage le plus impressionnant est aussi le plus difficile, et marque <strong>le pic de la courbe d’intensité</strong> : le grimpeur doit se jeter pour atteindre une prise, puis se repositionner immédiatement pour absorber l’élan du saut et ne pas tomber. Une fois dans une position stable, il peut souffler avant de repartir vers la fin du bloc.</p>
+                  <p data-lang="en">For example, the most impressive section is also the hardest, and marks <strong>the peak of the intensity curve</strong>: the climber has to jump to reach a hold, then immediately reposition to absorb the momentum and avoid falling. Once in a stable position, they can rest before heading for the finish.</p>
                 </div>
                 <figure>
                   <img src="images/escalade/defis.jpg" alt="Le jeté, du schéma au modèle">
-                  <figcaption>Le passage clé, du schéma au modèle : un jeté vers la prise de gauche, puis un changement rapide sur celle de droite pour absorber l'élan</figcaption>
+                  <figcaption data-lang="fr">Le passage clé, du schéma au modèle : un jeté vers la prise de gauche, puis un changement rapide sur celle de droite pour absorber l'élan</figcaption>
+                  <figcaption data-lang="en">The key section, from sketch to model: a dyno to the left hold, then a quick switch to the right one to absorb the momentum</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>Après environ 20 heures de travail réparties sur plusieurs mois, le bloc est terminé et <strong>pourrait réellement être installé et grimpé en salle</strong>.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">Après environ 20 heures de travail réparties sur plusieurs mois, le bloc est terminé et <strong>pourrait réellement être installé et grimpé en salle</strong>.</p>
+                  <p data-lang="en">After about 20 hours of work spread over several months, the boulder is finished and <strong>could actually be installed and climbed in a gym</strong>.</p>
                 </div>
                 <figure>
                   <img src="images/escalade/resultat.jpg" alt="Une prise sculptée dans Blender">
-                  <figcaption>Une des prises sculptées dans Blender</figcaption>
+                  <figcaption data-lang="fr">Une des prises sculptées dans Blender</figcaption>
+                  <figcaption data-lang="en">One of the holds sculpted in Blender</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>J’ai beaucoup appris en travaillant avec un professionnel d’un milieu complètement différent du mien : j’ai dû <strong>vulgariser certains termes du jeu vidéo</strong> et m’adapter aux règles de l’escalade.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">J’ai beaucoup appris en travaillant avec un professionnel d’un milieu complètement différent du mien : j’ai dû <strong>vulgariser certains termes du jeu vidéo</strong> et m’adapter aux règles de l’escalade.</p>
+                  <p data-lang="en">I learned a lot by working with a professional from a completely different field: I had to <strong>explain certain video game terms in plain language</strong> and adapt to the rules of climbing.</p>
                 </div>
               </section>
             </template>
@@ -395,68 +486,86 @@
             <!-- La note scotchée sous la photo -->
             <div class="note">
               <h3>Into the Dungeons</h3>
-              <p class="short">Jeu de plateau · Projet personnel · 2024/2025</p>
-              <p class="desc">Explorez un donjon où un joueur incarne les monstres face aux autres aventuriers</p>
+              <p class="short" data-lang="fr">Jeu de plateau · Projet personnel · 2024/2025</p>
+              <p class="short" data-lang="en">Board game · Personal project · 2024/2025</p>
+              <p class="desc" data-lang="fr">Explorez un donjon où un joueur incarne les monstres face aux autres aventuriers</p>
+              <p class="desc" data-lang="en">Explore a dungeon where one player controls the monsters against the other adventurers</p>
             </div>
             <template class="details">
               <img class="media" src="images/into-the-dungeons/entete.jpg" alt="Quatre héros d'Into the Dungeons">
               <h3>Into the Dungeons</h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer</li>
-                <li><strong>Moteur / outils</strong> Canva</li>
-                <li><strong>Durée</strong> 6 mois</li>
-                <li><strong>Équipe</strong> solo</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Canva</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Canva</li>
+                <li data-lang="fr"><strong>Durée</strong> 6 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 6 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> solo</li>
+                <li data-lang="en"><strong>Team</strong> solo</li>
               </ul>
-              <a class="btn" href="[lien]" target="_blank">[Règles du jeu]</a>
+              <a class="btn" href="[lien]" target="_blank"><span data-lang="fr">[Règles du jeu]</span><span data-lang="en">[Game rules]</span></a>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Into the Dungeons est un <strong>jeu de plateau asymétrique</strong> dans lequel un groupe de héros explore un donjon pour atteindre et vaincre son boss. Mais les monstres qui protègent le donjon sont contrôlés par un autre joueur : <strong>le maître du donjon</strong>, dont le but est d’arrêter les héros avant qu’ils ne battent le boss.</p>
-                  <p>Chaque joueur incarne l’un des <strong>dix héros</strong>, tous très différents, dotés chacun d’une compétence passive et d’une compétence active. En face, le maître du donjon dispose d’une dizaine de monstres différents et de <strong>quatre boss</strong>.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Into the Dungeons est un <strong>jeu de plateau asymétrique</strong> dans lequel un groupe de héros explore un donjon pour atteindre et vaincre son boss. Mais les monstres qui protègent le donjon sont contrôlés par un autre joueur : <strong>le maître du donjon</strong>, dont le but est d’arrêter les héros avant qu’ils ne battent le boss.</p>
+                  <p data-lang="en">Into the Dungeons is an <strong>asymmetric board game</strong> in which a group of heroes explores a dungeon to reach and defeat its boss. But the monsters guarding the dungeon are controlled by another player: <strong>the dungeon master</strong>, whose goal is to stop the heroes before they beat the boss.</p>
+                  <p data-lang="fr">Chaque joueur incarne l’un des <strong>dix héros</strong>, tous très différents, dotés chacun d’une compétence passive et d’une compétence active. En face, le maître du donjon dispose d’une dizaine de monstres différents et de <strong>quatre boss</strong>.</p>
+                  <p data-lang="en">Each player controls one of <strong>ten heroes</strong>, all very different, each with a passive and an active skill. On the other side, the dungeon master has about ten different monsters and <strong>four bosses</strong>.</p>
                 </div>
                 <figure>
                   <img src="images/into-the-dungeons/concept.jpg" alt="Cartes de monstres">
-                  <figcaption>Deux monstres du maître du donjon, avec leurs statistiques selon la difficulté</figcaption>
+                  <figcaption data-lang="fr">Deux monstres du maître du donjon, avec leurs statistiques selon la difficulté</figcaption>
+                  <figcaption data-lang="en">Two of the dungeon master’s monsters, with their stats by difficulty</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p><strong>J’ai réalisé ce projet seul</strong>, à l’origine pour constituer le portfolio avec lequel je voulais candidater aux écoles qui m’intéressaient. Il me tenait tellement à cœur que j’ai <strong>continué à le faire évoluer</strong> après mon entrée à Isart Digital.</p>
-                  <p>J’ai commencé par établir les règles des héros (déplacements, attaques, compétences et points de vie) en cherchant un <strong>équilibrage cohérent selon leur classe</strong>. J’ai ensuite appliqué la même démarche aux ennemis, que j’ai répartis en plusieurs catégories, puis aux boss. Une fois les deux camps conçus, je me suis attaqué à l’asymétrie, et j’ai créé <strong>un système qui adapte le jeu au nombre de joueurs</strong>.</p>
-                  <p>Côté matériel, les illustrations des héros et des monstres ont été réalisées par Bonedustuff, qui m’a autorisé à les utiliser dans ce cadre non commercial. J’ai ensuite conçu <strong>la mise en page des cartes</strong> pour qu’elles soient les plus lisibles possible, sans informations superflues.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr"><strong>J’ai réalisé ce projet seul</strong>, à l’origine pour constituer le portfolio avec lequel je voulais candidater aux écoles qui m’intéressaient. Il me tenait tellement à cœur que j’ai <strong>continué à le faire évoluer</strong> après mon entrée à Isart Digital.</p>
+                  <p data-lang="en"><strong>I made this project solo</strong>, originally to build the portfolio I used to apply to the schools I was interested in. It meant so much to me that I <strong>kept developing it</strong> after joining ISART Digital.</p>
+                  <p data-lang="fr">J’ai commencé par établir les règles des héros (déplacements, attaques, compétences et points de vie) en cherchant un <strong>équilibrage cohérent selon leur classe</strong>. J’ai ensuite appliqué la même démarche aux ennemis, que j’ai répartis en plusieurs catégories, puis aux boss. Une fois les deux camps conçus, je me suis attaqué à l’asymétrie, et j’ai créé <strong>un système qui adapte le jeu au nombre de joueurs</strong>.</p>
+                  <p data-lang="en">I started by setting the heroes’ rules (movement, attacks, skills and health points), aiming for <strong>consistent balancing based on their class</strong>. I then applied the same approach to the enemies, which I split into several categories, and then to the bosses. Once both sides were designed, I tackled the asymmetry and created <strong>a system that adapts the game to the number of players</strong>.</p>
+                  <p data-lang="fr">Côté matériel, les illustrations des héros et des monstres ont été réalisées par Bonedustuff, qui m’a autorisé à les utiliser dans ce cadre non commercial. J’ai ensuite conçu <strong>la mise en page des cartes</strong> pour qu’elles soient les plus lisibles possible, sans informations superflues.</p>
+                  <p data-lang="en">On the material side, the hero and monster illustrations were made by Bonedustuff, who allowed me to use them in this non-commercial context. I then designed <strong>the card layout</strong> to make the cards as readable as possible, with no unnecessary information.</p>
                 </div>
                 <figure>
                   <img src="images/into-the-dungeons/mon-role.jpg" alt="Carte du Druide">
-                  <figcaption>Une carte héros : statistiques, classe et compétences. Illustration : Bonedustuff</figcaption>
+                  <figcaption data-lang="fr">Une carte héros : statistiques, classe et compétences. Illustration : Bonedustuff</figcaption>
+                  <figcaption data-lang="en">A hero card: stats, class and skills. Illustration: Bonedustuff</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Concevoir un <strong>jeu asymétrique équilibré</strong>, avant même ma formation en game design, a été un véritable défi : les deux camps ne devaient être ni trop forts ni trop faibles l’un par rapport à l’autre, tout en laissant chacun prendre l’avantage à certains moments de la partie. Sans retours extérieurs au départ, j’ai beaucoup réfléchi et itéré sur chaque élément, avant de pouvoir organiser quelques playtests avec mon entourage, principalement pour valider les sensations de jeu.</p>
-                  <p>Après mon entrée à Isart Digital, j’ai repris le projet avec un regard neuf. Pour renforcer la rejouabilité, j’ai ajouté <strong>des cases à effet et des parties de donjon amovibles</strong>, qui changent la configuration d’une partie à l’autre. Et pour offrir plus de personnalisation aux héros, j’ai <strong>dissocié leurs barres de vie</strong> : selon certaines conditions, les joueurs peuvent choisir le type de barre de vie de leur personnage.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Concevoir un <strong>jeu asymétrique équilibré</strong>, avant même ma formation en game design, a été un véritable défi : les deux camps ne devaient être ni trop forts ni trop faibles l’un par rapport à l’autre, tout en laissant chacun prendre l’avantage à certains moments de la partie. Sans retours extérieurs au départ, j’ai beaucoup réfléchi et itéré sur chaque élément, avant de pouvoir organiser quelques playtests avec mon entourage, principalement pour valider les sensations de jeu.</p>
+                  <p data-lang="en">Designing a <strong>balanced asymmetric game</strong>, even before my game design training, was a real challenge: neither side could be too strong or too weak compared to the other, while still letting each one take the lead at certain points in the game. With no outside feedback at first, I thought through and iterated on every element, before I could organize a few playtests with friends and family, mainly to validate the game feel.</p>
+                  <p data-lang="fr">Après mon entrée à Isart Digital, j’ai repris le projet avec un regard neuf. Pour renforcer la rejouabilité, j’ai ajouté <strong>des cases à effet et des parties de donjon amovibles</strong>, qui changent la configuration d’une partie à l’autre. Et pour offrir plus de personnalisation aux héros, j’ai <strong>dissocié leurs barres de vie</strong> : selon certaines conditions, les joueurs peuvent choisir le type de barre de vie de leur personnage.</p>
+                  <p data-lang="en">After joining ISART Digital, I came back to the project with fresh eyes. To improve replayability, I added <strong>effect tiles and removable dungeon sections</strong>, which change the layout from one game to the next. And to give the heroes more customization, I <strong>split their health bars</strong>: under certain conditions, players can choose which type of health bar their character uses.</p>
                 </div>
                 <figure>
                   <img src="images/into-the-dungeons/defis.jpg" alt="Un héros face à un monstre">
-                  <figcaption>Un héros face à un monstre : chaque camp doit pouvoir prendre l'avantage à un moment de la partie</figcaption>
+                  <figcaption data-lang="fr">Un héros face à un monstre : chaque camp doit pouvoir prendre l'avantage à un moment de la partie</figcaption>
+                  <figcaption data-lang="en">A hero facing a monster: each side must be able to take the lead at some point in the game</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>Le jeu est <strong>actuellement en bêta</strong> : il est entièrement jouable, mais il lui manque encore des playtests pour aboutir à une version définitive. C’est un projet qui me tient particulièrement à cœur, car il rassemble beaucoup de concepts que j’aime dans l’univers du jeu.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">Le jeu est <strong>actuellement en bêta</strong> : il est entièrement jouable, mais il lui manque encore des playtests pour aboutir à une version définitive. C’est un projet qui me tient particulièrement à cœur, car il rassemble beaucoup de concepts que j’aime dans l’univers du jeu.</p>
+                  <p data-lang="en">The game is <strong>currently in beta</strong>: it is fully playable, but still needs playtests to reach a final version. It is a project close to my heart, because it brings together many concepts I love in the world of games.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce projet, commencé avant ma formation, m’a appris le game design par la pratique. Il m’a surtout appris à <strong>faire confiance à mes choix de design</strong>, tout en continuant à itérer pour valider chaque nouvel élément du jeu.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce projet, commencé avant ma formation, m’a appris le game design par la pratique. Il m’a surtout appris à <strong>faire confiance à mes choix de design</strong>, tout en continuant à itérer pour valider chaque nouvel élément du jeu.</p>
+                  <p data-lang="en">This project, started before my training, taught me game design through practice. Above all, it taught me to <strong>trust my design choices</strong>, while continuing to iterate to validate each new element of the game.</p>
                 </div>
               </section>
             </template>
@@ -467,174 +576,218 @@
             <!-- La note scotchée sous la photo -->
             <div class="note">
               <h3>Bone Couture</h3>
-              <p class="short">Jeu de plateau · Projet scolaire · 2024</p>
-              <p class="desc">Récoltez les os les plus stylés pour vous faire remarquer lors de la grande fête du roi des Morts </p>
+              <p class="short" data-lang="fr">Jeu de plateau · Projet scolaire · 2024</p>
+              <p class="short" data-lang="en">Board game · School project · 2024</p>
+              <p class="desc" data-lang="fr">Récoltez les os les plus stylés pour vous faire remarquer lors de la grande fête du roi des Morts </p>
+              <p class="desc" data-lang="en">Collect the most stylish bones to stand out at the King of the Dead’s grand party</p>
             </div>
             <template class="details">
               <img class="media" src="images/bone-couture/entete.jpg" alt="La boîte de Bone Couture">
               <h3>Bone Couture</h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer</li>
-                <li><strong>Moteur / outils</strong> Excel</li>
-                <li><strong>Durée</strong> 2 mois</li>
-                <li><strong>Équipe</strong> 8 personnes</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Excel</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Excel</li>
+                <li data-lang="fr"><strong>Durée</strong> 2 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 2 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> 8 personnes</li>
+                <li data-lang="en"><strong>Team</strong> 8 people</li>
               </ul>
-              <a class="btn" href="[lien]" target="_blank">[Règles du jeu]</a>
+              <a class="btn" href="[lien]" target="_blank"><span data-lang="fr">[Règles du jeu]</span><span data-lang="en">[Game rules]</span></a>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Dans Bone Couture, les joueurs incarnent des esprits invités à la grande fête du roi des Morts. Mais un simple esprit ne fait pas sensation : ils doivent récupérer des os un peu partout dans la crypte pour se construire <strong>le squelette le plus stylé</strong> et se faire remarquer pendant la fête.</p>
-                  <p>Les os existent en <strong>plusieurs raretés</strong> : certains rapportent plus de points de style, d’autres offrent des capacités pour aller chercher de nouveaux os, et certains portent des malédictions à éviter.</p>
-                  <p>Le twist : <strong>le jeu repose sur la physique</strong>. Pour se déplacer, les joueurs donnent des pichenettes à leur jeton fantôme afin d’atteindre les autres jetons. Chaque os récupéré s’empile sur les précédents, formant une tour de plus en plus difficile à manier. Pour marquer des points, il faut mettre ses os à l’abri à temps : <strong>si la tour tombe, tout le monde peut se servir</strong> !</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Dans Bone Couture, les joueurs incarnent des esprits invités à la grande fête du roi des Morts. Mais un simple esprit ne fait pas sensation : ils doivent récupérer des os un peu partout dans la crypte pour se construire <strong>le squelette le plus stylé</strong> et se faire remarquer pendant la fête.</p>
+                  <p data-lang="en">In Bone Couture, players are spirits invited to the King of the Dead’s grand party. But a mere spirit won’t turn heads: they have to collect bones all over the crypt to build <strong>the most stylish skeleton</strong> and stand out at the party.</p>
+                  <p data-lang="fr">Les os existent en <strong>plusieurs raretés</strong> : certains rapportent plus de points de style, d’autres offrent des capacités pour aller chercher de nouveaux os, et certains portent des malédictions à éviter.</p>
+                  <p data-lang="en">Bones come in <strong>several rarities</strong>: some are worth more style points, others grant abilities to go after new bones, and some carry curses to avoid.</p>
+                  <p data-lang="fr">Le twist : <strong>le jeu repose sur la physique</strong>. Pour se déplacer, les joueurs donnent des pichenettes à leur jeton fantôme afin d’atteindre les autres jetons. Chaque os récupéré s’empile sur les précédents, formant une tour de plus en plus difficile à manier. Pour marquer des points, il faut mettre ses os à l’abri à temps : <strong>si la tour tombe, tout le monde peut se servir</strong> !</p>
+                  <p data-lang="en">The twist: <strong>the game is physics-based</strong>. To move, players flick their ghost token to reach the other tokens. Each bone collected is stacked on the previous ones, forming a tower that gets harder and harder to handle. To score points, you have to secure your bones in time: <strong>if the tower falls, everyone can help themselves</strong>!</p>
                 </div>
                 <figure>
                   <img src="images/bone-couture/concept.jpg" alt="L'invitation à la fête">
-                  <figcaption>L'invitation à la grande fête du royaume des Morts, qui pose l'univers du jeu</figcaption>
+                  <figcaption data-lang="fr">L'invitation à la grande fête du royaume des Morts, qui pose l'univers du jeu</figcaption>
+                  <figcaption data-lang="en">The invitation to the grand party of the Kingdom of the Dead, which sets the game’s world</figcaption>
                 </figure>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Bone Couture est né de notre tout premier exercice à l’école : créer un jeu de plateau sur le thème imposé de la malédiction. Nous étions 6 game designers ; une fois le jeu conçu, la direction artistique a été confiée à 2 game artists. Après avoir beaucoup changé d’idée pendant la production, nous nous sommes arrêtés sur <strong>un jeu physique, basé sur des pichenettes et des rebonds</strong> dans un plateau en 3D.</p>
-                  <p><strong>Je me suis principalement occupé des os</strong> : leur nom, leur valeur et leurs capacités, puis <strong>l’équilibrage des points de style</strong> que rapporte chacun.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Bone Couture est né de notre tout premier exercice à l’école : créer un jeu de plateau sur le thème imposé de la malédiction. Nous étions 6 game designers ; une fois le jeu conçu, la direction artistique a été confiée à 2 game artists. Après avoir beaucoup changé d’idée pendant la production, nous nous sommes arrêtés sur <strong>un jeu physique, basé sur des pichenettes et des rebonds</strong> dans un plateau en 3D.</p>
+                  <p data-lang="en">Bone Couture came from our very first assignment at school: create a board game on the imposed theme of curses. There were 6 game designers; once the game was designed, the art direction was handed to 2 game artists. After changing ideas many times during production, we settled on <strong>a physical game based on flicks and bounces</strong> on a 3D board.</p>
+                  <p data-lang="fr"><strong>Je me suis principalement occupé des os</strong> : leur nom, leur valeur et leurs capacités, puis <strong>l’équilibrage des points de style</strong> que rapporte chacun.</p>
+                  <p data-lang="en"><strong>I mainly worked on the bones</strong>: their names, values and abilities, then <strong>balancing the style points</strong> each one is worth.</p>
                 </div>
                 <figure>
                   <img src="images/bone-couture/mon-role.jpg" alt="Cartes d'os">
-                  <figcaption>Les cartes d'os : chaque couleur correspond à une rareté, avec sa valeur et sa capacité</figcaption>
+                  <figcaption data-lang="fr">Les cartes d'os : chaque couleur correspond à une rareté, avec sa valeur et sa capacité</figcaption>
+                  <figcaption data-lang="en">The bone cards: each color matches a rarity, with its value and ability</figcaption>
                 </figure>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Une fois le concept trouvé, après un premier concept qui s’est révélé non viable, le principal défi a été l’équilibrage des os. Comme beaucoup d’entre eux avaient une capacité, certaines combinaisons risquaient de devenir trop puissantes et de casser le jeu. J’ai donc <strong>testé les synergies entre os</strong> pour repérer celles qui posaient problème, puis mené une grosse session d’équilibrage sur les points de style de chacun.</p>
-                  <p>Nous avons ensuite playtesté le jeu en groupe pour repérer d’éventuelles failles dans nos choix de design.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Une fois le concept trouvé, après un premier concept qui s’est révélé non viable, le principal défi a été l’équilibrage des os. Comme beaucoup d’entre eux avaient une capacité, certaines combinaisons risquaient de devenir trop puissantes et de casser le jeu. J’ai donc <strong>testé les synergies entre os</strong> pour repérer celles qui posaient problème, puis mené une grosse session d’équilibrage sur les points de style de chacun.</p>
+                  <p data-lang="en">Once we had the concept, after a first one that proved unworkable, the main challenge was balancing the bones. Since many of them had an ability, some combinations risked becoming too powerful and breaking the game. So I <strong>tested the synergies between bones</strong> to spot the problematic ones, then ran a big balancing pass on the style points of each bone.</p>
+                  <p data-lang="fr">Nous avons ensuite playtesté le jeu en groupe pour repérer d’éventuelles failles dans nos choix de design.</p>
+                  <p data-lang="en">We then playtested the game as a group to find any flaws in our design choices.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>Le jeu a reçu <strong>le prix de la narration</strong>, décerné par un groupe de professionnels qui l’ont testé. Un problème avec le matériel livré nous a cependant empêchés de produire une version officiellement jouable. Avec le bon matériel, le jeu et ses règles fonctionnent très bien.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">Le jeu a reçu <strong>le prix de la narration</strong>, décerné par un groupe de professionnels qui l’ont testé. Un problème avec le matériel livré nous a cependant empêchés de produire une version officiellement jouable. Avec le bon matériel, le jeu et ses règles fonctionnent très bien.</p>
+                  <p data-lang="en">The game won <strong>the Best Narrative award</strong>, given by a panel of professionals who tested it. A problem with the delivered materials, however, prevented us from producing an officially playable version. With the right materials, the game and its rules work very well.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce projet m’a surtout appris à travailler avec d’autres game designers : bien expliquer mes idées et <strong>défendre mes points de vue</strong> au sein d’une équipe où chacun avait les siens.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce projet m’a surtout appris à travailler avec d’autres game designers : bien expliquer mes idées et <strong>défendre mes points de vue</strong> au sein d’une équipe où chacun avait les siens.</p>
+                  <p data-lang="en">Above all, this project taught me to work with other game designers: explaining my ideas clearly and <strong>defending my point of view</strong> in a team where everyone had their own.</p>
                 </div>
               </section>
             </template>
           </article>
 
         </div>
-        <h2 class="zone-title">Autres Projets</h2>
-        <p class="zone-desc">Projets de design sur d'autres supports que le jeu vidéo</p>
+        <h2 class="zone-title"><span data-lang="fr">Autres Projets</span><span data-lang="en">Other Projects</span></h2>
+        <p class="zone-desc" data-lang="fr">Projets de design sur d'autres supports que le jeu vidéo</p>
+        <p class="zone-desc" data-lang="en">Design projects beyond video games</p>
       </section>
 
       <!-- ---------- CATÉGORIE 3 (en bas à gauche) ---------- -->
-      <section class="zone" id="cat3" style="--x: 250px; --y: 1100px;">
+      <section class="zone" id="cat3" style="--x: 250px; --y: 1060px;">
         <div class="box">
 
           <article class="card" tabindex="0">
-            <div class="thumb sans-visuel">En cours de<br>développement…</div>
+            <div class="thumb sans-visuel"><span data-lang="fr">En cours de<br>développement…</span><span data-lang="en">Still<br>developing…</span></div>
             <!-- La note scotchée sous la photo -->
             <div class="note">
-              <h3>Extension Villainous</h3>
-              <p class="short">Jeu de plateau · Projet personnel · 2024/2025</p>
-              <p class="desc">Une extension qui ajoute trois méchants DreamWorks, chacun avec sa propre mécanique</p>
+              <h3><span data-lang="fr">Extension Villainous</span><span data-lang="en">Villainous Expansion</span></h3>
+              <p class="short" data-lang="fr">Jeu de plateau · Projet personnel · 2024/2025</p>
+              <p class="short" data-lang="en">Board game · Personal project · 2024/2025</p>
+              <p class="desc" data-lang="fr">Une extension qui ajoute trois méchants DreamWorks, chacun avec sa propre mécanique</p>
+              <p class="desc" data-lang="en">An expansion adding three DreamWorks villains, each with its own mechanic</p>
             </div>
             <template class="details">
               <div class="media placeholder">[IMAGE PRINCIPALE OU VIDÉO]</div>
-              <h3>Extension Villainous</h3>
+              <h3><span data-lang="fr">Extension Villainous</span><span data-lang="en">Villainous Expansion</span></h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer</li>
-                <li><strong>Moteur / outils</strong> Google Docs</li>
-                <li><strong>Durée</strong> 4 mois</li>
-                <li><strong>Équipe</strong> solo</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Google Docs</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Google Docs</li>
+                <li data-lang="fr"><strong>Durée</strong> 4 mois</li>
+                <li data-lang="en"><strong>Duration</strong> 4 months</li>
+                <li data-lang="fr"><strong>Équipe</strong> solo</li>
+                <li data-lang="en"><strong>Team</strong> solo</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Grand amateur du jeu Villainous, édité par Ravensburger, et des films DreamWorks, j’ai décidé de réunir les deux dans une <strong>extension fan-made et non commerciale</strong>, mettant en scène <strong>trois méchants</strong> issus des films d’animation du studio : Shen (Kung Fu Panda 2), Drago (Dragons 2) et Pitch Black (Les Cinq Légendes).</p>
-                  <p>Comme dans le jeu de base, chaque méchant possède son propre objectif, son deck et son plateau, tous pensés pour rester au plus près de son film. J’ai également créé <strong>une mécanique unique</strong> pour chacun d’eux.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Grand amateur du jeu Villainous, édité par Ravensburger, et des films DreamWorks, j’ai décidé de réunir les deux dans une <strong>extension fan-made et non commerciale</strong>, mettant en scène <strong>trois méchants</strong> issus des films d’animation du studio : Shen (Kung Fu Panda 2), Drago (Dragons 2) et Pitch Black (Les Cinq Légendes).</p>
+                  <p data-lang="en">A big fan of Villainous, published by Ravensburger, and of DreamWorks films, I decided to bring the two together in a <strong>non-commercial fan-made expansion</strong> featuring <strong>three villains</strong> from the studio’s animated films: Shen (Kung Fu Panda 2), Drago (How to Train Your Dragon 2) and Pitch Black (Rise of the Guardians).</p>
+                  <p data-lang="fr">Comme dans le jeu de base, chaque méchant possède son propre objectif, son deck et son plateau, tous pensés pour rester au plus près de son film. J’ai également créé <strong>une mécanique unique</strong> pour chacun d’eux.</p>
+                  <p data-lang="en">As in the base game, each villain has their own objective, deck and board, all designed to stay as close as possible to their film. I also created <strong>a unique mechanic</strong> for each of them.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Sur ce projet solo, j’ai commencé par imaginer <strong>l’objectif de chaque méchant</strong> à partir de son film. Pitch Black, par exemple, doit corrompre tous les lieux de son plateau.</p>
-                  <p>J’ai ensuite créé <strong>l’ensemble des cartes</strong> (effets, coûts, forces) en restant fidèle à chaque film, tout en calibrant le nombre de cartes sur celui des méchants du jeu de base.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Sur ce projet solo, j’ai commencé par imaginer <strong>l’objectif de chaque méchant</strong> à partir de son film. Pitch Black, par exemple, doit corrompre tous les lieux de son plateau.</p>
+                  <p data-lang="en">On this solo project, I started by imagining <strong>each villain’s objective</strong> based on their film. Pitch Black, for example, has to corrupt every location on his board.</p>
+                  <p data-lang="fr">J’ai ensuite créé <strong>l’ensemble des cartes</strong> (effets, coûts, forces) en restant fidèle à chaque film, tout en calibrant le nombre de cartes sur celui des méchants du jeu de base.</p>
+                  <p data-lang="en">I then created <strong>all the cards</strong> (effects, costs, strength) while staying true to each film, and matched the number of cards to that of the base game’s villains.</p>
                 </div>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Le plus difficile a été de <strong>traduire en gameplay la mécanique unique</strong> de chaque méchant. Dans Kung Fu Panda 2, Shen veut anéantir le kung-fu grâce à un canon : dans mon extension, ce canon est divisé en plusieurs pièces dispersées dans sa pioche, et il doit toutes les réunir avant de pouvoir tenter de gagner.</p>
-                  <p><strong>L’équilibrage des decks</strong> a aussi été un vrai défi, aussi bien en quantité de cartes qu’en répartition entre les différents types de cartes d’un même deck. Enfin, transposer les personnages et les événements des films sur des cartes a demandé <strong>un vrai travail d’écriture</strong>, pour que chaque compétence soit à la fois compréhensible et fidèle au film.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Le plus difficile a été de <strong>traduire en gameplay la mécanique unique</strong> de chaque méchant. Dans Kung Fu Panda 2, Shen veut anéantir le kung-fu grâce à un canon : dans mon extension, ce canon est divisé en plusieurs pièces dispersées dans sa pioche, et il doit toutes les réunir avant de pouvoir tenter de gagner.</p>
+                  <p data-lang="en">The hardest part was <strong>turning the unique mechanic into gameplay</strong> for each villain. In Kung Fu Panda 2, Shen wants to wipe out kung fu with a cannon: in my expansion, the cannon is split into several pieces scattered through his deck, and he has to gather them all before he can try to win.</p>
+                  <p data-lang="fr"><strong>L’équilibrage des decks</strong> a aussi été un vrai défi, aussi bien en quantité de cartes qu’en répartition entre les différents types de cartes d’un même deck. Enfin, transposer les personnages et les événements des films sur des cartes a demandé <strong>un vrai travail d’écriture</strong>, pour que chaque compétence soit à la fois compréhensible et fidèle au film.</p>
+                  <p data-lang="en"><strong>Balancing the decks</strong> was also a real challenge, both in the number of cards and in the distribution of card types within a single deck. Finally, adapting the films’ characters and events into cards required <strong>real writing work</strong>, so that each ability would be both understandable and faithful to the film.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p><strong>Les trois méchants sont complets</strong>, deck et plateau compris. Il leur manque encore des playtests pour affiner l’équilibrage des decks. La prochaine étape sera de réaliser le design graphique des cartes, pour obtenir une version entièrement jouable.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr"><strong>Les trois méchants sont complets</strong>, deck et plateau compris. Il leur manque encore des playtests pour affiner l’équilibrage des decks. La prochaine étape sera de réaliser le design graphique des cartes, pour obtenir une version entièrement jouable.</p>
+                  <p data-lang="en"><strong>All three villains are complete</strong>, decks and boards included. They still need playtests to fine-tune deck balance. The next step will be the graphic design of the cards, to get a fully playable version.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Partir d’un jeu existant et d’univers déjà établis a été un excellent exercice : chaque choix devait <strong>respecter à la fois les règles du jeu de base et l’identité des personnages</strong>.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Partir d’un jeu existant et d’univers déjà établis a été un excellent exercice : chaque choix devait <strong>respecter à la fois les règles du jeu de base et l’identité des personnages</strong>.</p>
+                  <p data-lang="en">Starting from an existing game and established worlds was an excellent exercise: every choice had to <strong>respect both the rules of the base game and the identity of the characters</strong>.</p>
                 </div>
               </section>
             </template>
           </article>
 
           <article class="card" tabindex="0">
-            <div class="thumb sans-visuel">En cours de<br>développement…</div>
+            <div class="thumb sans-visuel"><span data-lang="fr">En cours de<br>développement…</span><span data-lang="en">Still<br>developing…</span></div>
             <!-- La note scotchée sous la photo -->
             <div class="note">
-              <h3>Génération Procédurale</h3>
-              <p class="short">Jeu vidéo · Projet personnel · Unity · 2026</p>
-              <p class="desc">Générer des salles jouables à partir de règles de Game Design précises</p>
+              <h3><span data-lang="fr">Génération Procédurale</span><span data-lang="en">Procedural Generation</span></h3>
+              <p class="short" data-lang="fr">Jeu vidéo · Projet personnel · Unity · 2026</p>
+              <p class="short" data-lang="en">Video game · Personal project · Unity · 2026</p>
+              <p class="desc" data-lang="fr">Générer des salles jouables à partir de règles de Game Design précises</p>
+              <p class="desc" data-lang="en">Generating playable rooms from precise game design rules</p>
             </div>
             <template class="details">
-              <h3>Génération Procédurale</h3>
+              <h3><span data-lang="fr">Génération Procédurale</span><span data-lang="en">Procedural Generation</span></h3>
               <ul class="facts">
-                <li><strong>Rôle</strong> Game Designer · Game Programmer</li>
-                <li><strong>Moteur / outils</strong> Unity</li>
-                <li><strong>Durée</strong> 2 mois (en cours)</li>
-                <li><strong>Équipe</strong> solo</li>
+                <li data-lang="fr"><strong>Rôle</strong> Game Designer · Game Programmer</li>
+                <li data-lang="en"><strong>Role</strong> Game Designer · Game Programmer</li>
+                <li data-lang="fr"><strong>Moteur / outils</strong> Unity</li>
+                <li data-lang="en"><strong>Engine / tools</strong> Unity</li>
+                <li data-lang="fr"><strong>Durée</strong> 2 mois (en cours)</li>
+                <li data-lang="en"><strong>Duration</strong> 2 months (ongoing)</li>
+                <li data-lang="fr"><strong>Équipe</strong> solo</li>
+                <li data-lang="en"><strong>Team</strong> solo</li>
               </ul>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Le concept</h4>
-                  <p>Ce prototype pose les bases d’un jeu post-apocalyptique dans lequel le joueur doit nettoyer des bâtiments en ruine, <strong>générés de façon procédurale</strong>. Il explore les salles, récupère du loot et élimine les monstres qui s’y trouvent. Certaines salles sont verrouillées : le joueur doit résoudre de petites énigmes pour en ouvrir les portes.</p>
+                  <h4><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span></h4>
+                  <p data-lang="fr">Ce prototype pose les bases d’un jeu post-apocalyptique dans lequel le joueur doit nettoyer des bâtiments en ruine, <strong>générés de façon procédurale</strong>. Il explore les salles, récupère du loot et élimine les monstres qui s’y trouvent. Certaines salles sont verrouillées : le joueur doit résoudre de petites énigmes pour en ouvrir les portes.</p>
+                  <p data-lang="en">This prototype lays the foundations of a post-apocalyptic game in which the player has to clear out ruined buildings, <strong>procedurally generated</strong>. They explore the rooms, collect loot and eliminate the monsters inside. Some rooms are locked: the player has to solve small puzzles to open their doors.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Mon rôle</h4>
-                  <p>Ce projet personnel avait un double objectif : <strong>apprendre à concevoir de la génération procédurale</strong>, que l’on retrouve dans beaucoup de jeux que j’aime, et apprendre à <strong>lire le C#</strong>.</p>
-                  <p>Côté game design, j’ai conçu le jeu et ses systèmes de base : un inventaire fonctionnel inspiré de celui de Minecraft, une barre de vie et un système de détection sonore. J’ai aussi défini très tôt <strong>les boucles de gameplay</strong>, pour que le prototype soit intéressant à jouer, au-delà d’une démonstration technique.</p>
-                  <p>Côté programmation, je me suis aidé d’une IA pour apprendre le langage : elle m’a servi à écrire le code, mais surtout à <strong>comprendre comment il fonctionne</strong>, afin de pouvoir le lire et le corriger moi-même.</p>
+                  <h4><span data-lang="fr">Mon rôle</span><span data-lang="en">My role</span></h4>
+                  <p data-lang="fr">Ce projet personnel avait un double objectif : <strong>apprendre à concevoir de la génération procédurale</strong>, que l’on retrouve dans beaucoup de jeux que j’aime, et apprendre à <strong>lire le C#</strong>.</p>
+                  <p data-lang="en">This personal project had a double goal: <strong>learning to design procedural generation</strong>, which appears in many games I love, and learning to <strong>read C#</strong>.</p>
+                  <p data-lang="fr">Côté game design, j’ai conçu le jeu et ses systèmes de base : un inventaire fonctionnel inspiré de celui de Minecraft, une barre de vie et un système de détection sonore. J’ai aussi défini très tôt <strong>les boucles de gameplay</strong>, pour que le prototype soit intéressant à jouer, au-delà d’une démonstration technique.</p>
+                  <p data-lang="en">On the game design side, I designed the game and its core systems: a functional inventory inspired by Minecraft’s, a health bar and a sound detection system. I also defined <strong>the gameplay loops</strong> early on, so that the prototype would be interesting to play, beyond a technical demo.</p>
+                  <p data-lang="fr">Côté programmation, je me suis aidé d’une IA pour apprendre le langage : elle m’a servi à écrire le code, mais surtout à <strong>comprendre comment il fonctionne</strong>, afin de pouvoir le lire et le corriger moi-même.</p>
+                  <p data-lang="en">On the programming side, I used an AI to learn the language: it helped me write the code, but above all <strong>understand how it works</strong>, so that I could read and fix it myself.</p>
                 </div>
               </section>
 
               <section class="bloc large">
                 <div class="texte">
-                  <h4>Défis de design</h4>
-                  <p>Le principal défi était de <strong>concilier aléatoire et crédibilité</strong> : malgré la génération procédurale, le joueur doit avoir l’impression d’explorer un vrai bâtiment, de type immeuble de bureaux. L’agencement des salles s’inspire donc de celui de vrais bureaux. Le générateur place d’abord les dimensions des salles dans l’espace, et ne les instancie en 3D qu’une fois qu’aucune ne se chevauche. Les salles sont ensuite reliées entre elles par des points d’ouverture prévus dans chacune d’elles.</p>
-                  <p>J’ai également conçu <strong>un système de son</strong> : chaque action et chaque déplacement du joueur émettent un bruit plus ou moins fort. Les monstres qui l’entendent accourent jusqu’à sa source, puis reprennent leur ronde s’ils n’y trouvent personne. Le joueur doit donc gérer le bruit qu’il fait autant que ses combats.</p>
+                  <h4><span data-lang="fr">Défis de design</span><span data-lang="en">Design challenges</span></h4>
+                  <p data-lang="fr">Le principal défi était de <strong>concilier aléatoire et crédibilité</strong> : malgré la génération procédurale, le joueur doit avoir l’impression d’explorer un vrai bâtiment, de type immeuble de bureaux. L’agencement des salles s’inspire donc de celui de vrais bureaux. Le générateur place d’abord les dimensions des salles dans l’espace, et ne les instancie en 3D qu’une fois qu’aucune ne se chevauche. Les salles sont ensuite reliées entre elles par des points d’ouverture prévus dans chacune d’elles.</p>
+                  <p data-lang="en">The main challenge was to <strong>reconcile randomness and believability</strong>: despite the procedural generation, the player has to feel like they are exploring a real building, such as an office block. The room layout is therefore inspired by real offices. The generator first places the room dimensions in space, and only instantiates them in 3D once none of them overlap. The rooms are then connected through opening points built into each of them.</p>
+                  <p data-lang="fr">J’ai également conçu <strong>un système de son</strong> : chaque action et chaque déplacement du joueur émettent un bruit plus ou moins fort. Les monstres qui l’entendent accourent jusqu’à sa source, puis reprennent leur ronde s’ils n’y trouvent personne. Le joueur doit donc gérer le bruit qu’il fait autant que ses combats.</p>
+                  <p data-lang="en">I also designed <strong>a sound system</strong>: every action and every movement of the player makes a more or less loud noise. Monsters that hear it rush to its source, then go back to their patrol if they find no one. The player has to manage the noise they make as much as their fights.</p>
                 </div>
                 <figure>
                 </figure>
@@ -642,15 +795,17 @@
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Résultat</h4>
-                  <p>Dans le prototype actuel, le joueur peut se déplacer librement d’une salle à l’autre par de simples couloirs, attaquer les monstres et ramasser des objets dans son inventaire. Les boucles de gameplay sont conçues mais pas encore toutes intégrées : le projet est <strong>toujours en cours</strong>, et la première version complète du prototype arrive bientôt.</p>
+                  <h4><span data-lang="fr">Résultat</span><span data-lang="en">Outcome</span></h4>
+                  <p data-lang="fr">Dans le prototype actuel, le joueur peut se déplacer librement d’une salle à l’autre par de simples couloirs, attaquer les monstres et ramasser des objets dans son inventaire. Les boucles de gameplay sont conçues mais pas encore toutes intégrées : le projet est <strong>toujours en cours</strong>, et la première version complète du prototype arrive bientôt.</p>
+                  <p data-lang="en">In the current prototype, the player can move freely from room to room through simple corridors, attack monsters and pick up items into their inventory. The gameplay loops are designed but not all implemented yet: the project is <strong>still in progress</strong>, and the first complete version of the prototype is coming soon.</p>
                 </div>
               </section>
 
               <section class="bloc">
                 <div class="texte">
-                  <h4>Ce que j'ai appris</h4>
-                  <p>Ce projet m’a beaucoup appris, en programmation (lire, comprendre et corriger du code) comme en génération procédurale : concevoir avec beaucoup d’aléatoire, créer des systèmes qui s’adaptent, et produire <strong>un environnement cohérent sans être répétitif</strong>.</p>
+                  <h4><span data-lang="fr">Ce que j'ai appris</span><span data-lang="en">What I learned</span></h4>
+                  <p data-lang="fr">Ce projet m’a beaucoup appris, en programmation (lire, comprendre et corriger du code) comme en génération procédurale : concevoir avec beaucoup d’aléatoire, créer des systèmes qui s’adaptent, et produire <strong>un environnement cohérent sans être répétitif</strong>.</p>
+                  <p data-lang="en">This project taught me a lot, in programming (reading, understanding and fixing code) as well as in procedural generation: designing with a lot of randomness, creating systems that adapt, and producing <strong>an environment that is coherent without being repetitive</strong>.</p>
                 </div>
               </section>
             </template>
@@ -658,7 +813,8 @@
 
         </div>
         <h2 class="zone-title">Prototypes</h2>
-        <p class="zone-desc">Concepts jouables au stade de prototype ou de bêta</p>
+        <p class="zone-desc" data-lang="fr">Concepts jouables au stade de prototype ou de bêta</p>
+        <p class="zone-desc" data-lang="en">Playable concepts at prototype or beta stage</p>
       </section>
 
     </div>
